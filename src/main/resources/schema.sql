@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS stars;
-DROP TABLE IF EXISTS favoriteis;
+DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS coupons;
 -- 会員テーブル
 CREATE TABLE users
@@ -15,7 +15,7 @@ CREATE TABLE users
    -- メアド
    mail TEXT,
    -- パスワード
-   password TEXT
+   password TEXT,
    -- アカウント名
    accountName TEXT,
    -- ポイント
