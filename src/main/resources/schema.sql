@@ -15,7 +15,7 @@ CREATE TABLE users
    -- メアド
    mail TEXT,
    -- パスワード
-   password TEXT
+   password TEXT,
    -- アカウント名
    accountName TEXT,
    -- ポイント
