@@ -7,6 +7,28 @@
 <body>
 	<header>
 		<h1>ログイン</h1>
+		<main>
+<!--		エラーメッセージ-->
+		<span th:text="${}" style="color: red"></span>
+	
+	<form action="" method="post">
+		<table border="1">
+			<tr>
+				<th>メールアドレス</th>
+				<td> <input type="text" name="email"></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><input type="text" name="password"></td>
+			</tr>
+		</table>
+		<button>ログイン</button>
+			
+		</form>
+		<a href="">アカウントを作成する</a><br>
+		<br>
+		
+		</main>
 		
 	</header>
 </body>
