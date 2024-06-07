@@ -1,8 +1,8 @@
 -- users テーブルにデータを挿入するクエリ
-INSERT INTO users (name, mail, password, account_name, point)
+INSERT INTO users (name, birthday, address, mail, tel, password, account_name, point)
 VALUES
-('伊藤一郎', 'itou.itiro@risukiru.com', 'itirohimitu', 'イチロー', 1000),
-('伊藤二郎', 'itou.jiro@risukiru.com', 'jirohimitu', '二チロー', 2000)
+('伊藤一郎', '2004-02-29', '北海道札幌市', 'itou.itiro@risukiru.com', '111-2222-3333', 'itirohimitu', 'イチロー', 1000),
+('伊藤二郎', '2024-06-07', '東京都新宿区', 'itou.jiro@risukiru.com', '000-0000-0000', 'jirohimitu', '二チロー', 2000)
 ;
 
 -- languages テーブルにデータを挿入するクエリ

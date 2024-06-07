@@ -12,8 +12,14 @@ CREATE TABLE users
    id SERIAL PRIMARY KEY,
    -- 名前
    name TEXT,
+   -- 生年月日
+   birthday DATE,
+   -- 住所
+   address TEXT,
    -- メアド
    mail TEXT,
+   -- 電話番号
+   tel TEXT,
    -- パスワード
    password TEXT,
    -- アカウント名

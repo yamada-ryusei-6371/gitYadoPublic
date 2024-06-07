@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>新規登録画面</title>
+	<meta charset="UTF-8">
+	<title>新規登録画面</title>
 </head>
+
 <body>
 
-    <h1>新規アカウント作成</h1>
-    
-    <span th:if=""
- 	th:each="" th:utext="" style="color: red"><br></span>
+	<h1>新規アカウント作成</h1>
 
-    <form action="/user/login/add" method="post">
-        <table border="1">
-            <tr>
-                <th>名前（必須）</th>
-                <td>
-                    <input type="text" name="name"  th:value="${name}">
-                </td>
-            </tr>
-        	<tr>
-                <th>アカウント名</th>             
-                <td>
-                    <input type="text" name="" th:value="${}">
-               </td>
-          </tr>
-            <tr>
-                <th>電話番号（必須）</th>
-                <td>
-                    <input type="text" name="tel" th:value="${tel}">
-                </td>
-            </tr>
-            <tr>
-                <th>メールアドレス（必須）</th>
-                <td>
-                    <input type="text" name="mail" th:value="${mail}">
-                </td>
-            </tr>
-            <tr>
-                <th>パスワード（必須）</th>
-                <td>
-                    <input type="text" name="password">
-                </td>
-            </tr>
-        </table>
-        <button>登録</button>
-    </form>
-    
-    	<form action="/user/login" method="get">
+	<span th:if="${errorlist}" th:each="error:errorlist" th:utext="${error}" style="color: red"><br></span>
+
+	<form action="/user/login/add" method="post">
+		<table border="1">
+			<tr>
+				<th>名前（必須）</th>
+				<td>
+					<input type="text" name="name" th:value="${name}">
+				</td>
+			</tr>
+			<tr>
+				<th>生年月日（必須）</th>
+				<td>
+					<input type="date" name="birthday" th:value="${birthday}">
+				</td>
+			</tr>
+			<tr>
+				<th>住所（必須）</th>
+				<td>
+					<input type="text" name="address" th:value="${address}">
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス（必須）</th>
+				<td>
+					<input type="text" name="mail" th:value="${mail}">
+				</td>
+			</tr>
+			<tr>
+				<th>電話番号（必須）</th>
+				<td>
+					<input type="text" name="tel" th:value="${tel}">
+				</td>
+			</tr>
+			<tr>
+				<th>アカウント名</th>
+				<td>
+					<input type="text" name="accountName" th:value="${accountName}">
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード（必須）</th>
+				<td>
+					<input type="text" name="password">
+				</td>
+			</tr>
+		</table>
+		<button>登録</button>
+	</form>
+
+	<form action="/user/login" method="get">
 		<button> 戻る</button>
-		</form>
+	</form>
 	</main>
 
 </body>
+
 </html>

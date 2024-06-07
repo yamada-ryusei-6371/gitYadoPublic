@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,30 +16,40 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private LocalDate birthday;
+	private String address;
 	private String mail;
+	private String tel;
 	private String password;
 	@Column(name = "account_name")
 	private String accountName;
 	private Integer point;
-	
+
 	public User() {
 	}
-	
-	public User(Integer id, String name, String mail, String password, String accountName, Integer point) {
+
+	public User(Integer id, String name, LocalDate birthday, String address, String mail, String tel, String password,
+			String accountName, Integer point) {
 		this.id = id;
 		this.name = name;
+		this.birthday = birthday;
+		this.address = address;
 		this.mail = mail;
+		this.tel = tel;
 		this.password = password;
 		this.accountName = accountName;
 		this.point = point;
 	}
-	
-	public User(String name, String mail, String password, String accountName, Integer point) {
+
+	public User(String name, LocalDate birthday, String address, String mail, String tel, String password,
+			String accountName) {
 		this.name = name;
+		this.birthday = birthday;
+		this.address = address;
 		this.mail = mail;
+		this.tel = tel;
 		this.password = password;
 		this.accountName = accountName;
-		this.point = point;
 	}
 
 	public Integer getId() {
@@ -56,12 +68,36 @@ public class User {
 		this.name = name;
 	}
 
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getMail() {
 		return mail;
 	}
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	public String getPassword() {
@@ -87,5 +123,5 @@ public class User {
 	public void setPoint(Integer point) {
 		this.point = point;
 	}
-	
+
 }

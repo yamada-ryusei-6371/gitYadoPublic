@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,10 +93,58 @@ public class AccountController {
 	}
 
 	// 新規登録画面表示
-	@GetMapping("#")
+	@GetMapping("/user/add")
 	public String create() {
-		return "#";
+		return "addUser";
 	}
 
 	// 新規登録実行
+	@PostMapping("/user/login/add")
+	public String createUser(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "mail", defaultValue = "") String mail,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "accountName", defaultValue = "") String accountName,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			Model model) {
+		ArrayList<String> errorlist = new ArrayList<String>();
+
+		if (name.equals("") || name.length() == 0) {
+			errorlist.add("名前は必須です");
+		}
+		if (birthday.equals("")) {
+			errorlist.add("生年月日は必須です");
+		}
+		if (address.equals("") || address.length() == 0) {
+			errorlist.add("住所は必須です");
+		}
+		if (mail.equals("") || mail.length() == 0) {
+			errorlist.add("メールアドレスは必須です");
+		}
+		if (tel.equals("") || tel.length() == 0) {
+			errorlist.add("電話番号は必須です");
+		}
+		if (password.equals("")) {
+			errorlist.add("パスワードは必須です");
+		}
+		if (accountName.equals("") || accountName.length() == 0) {
+			errorlist.add("アカウント名は必須です");
+		}
+		
+//		User users = userRepository.findAllByMail(mail);
+//		if (users != null) {
+//			list.add("登録済みのメールアドレスです");
+//		}
+		if (errorlist.size() != 0) {
+			model.addAttribute("errorlist", errorlist);
+			return "addUser";
+		}
+		
+		User user = new User(name, birthday, address, mail, tel, password, accountName);
+		userRepository.save(user);
+		
+		return "redirect:/user/login";
+	}
 }
