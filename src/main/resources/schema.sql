@@ -57,7 +57,7 @@ CREATE TABLE reservations
    -- 宿泊日時
    hotelDay DATE,
    -- チェックイン
-   checkIn DATE,
+   checkIn Time,
    -- 予約人数
    human INTEGER
 );
