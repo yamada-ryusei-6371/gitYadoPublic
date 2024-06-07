@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>クチコミ書き込み</title>
+
+</head>
+
+<body>
+	
+	<header th:replace="User_header"></header>
+	
+	<form action="form" method="post">
+		<table>
+			<tr>
+				<th>評価</th>
+				<td>
+						<input type="radio" id="star5" name="rating" value="5">
+						<input type="radio" id="star4" name="rating" value="4">
+						<input type="radio" id="star3" name="rating" value="3">
+						<input type="radio" id="star2" name="rating" value="2">
+						<input type="radio" id="star1" name="rating" value="1">
+				</td>
+			</tr>
+			<tr>
+				<th>タイトル</th>
+				<td>
+					<input type="text" name="title">
+				</td>
+			</tr>
+			<tr>
+				<th>内容</th>
+				<td><textarea id="message" name="review" cols="50" rows="12" required></textarea></td>
+			</tr>
+		</table>
+
+		<button>送信</button>
+
+	</form>
+
+
+</body>
+
+</html>
