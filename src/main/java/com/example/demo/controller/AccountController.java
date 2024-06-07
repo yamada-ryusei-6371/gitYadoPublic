@@ -40,14 +40,14 @@ public class AccountController {
 		if (adminId.equals("") || password.equals("")) {
 			model.addAttribute("error", "未入力の項目があります");
 			return "adminLogin";
-		} else if (!(8 <= password.length() && password.length() <= 20)) {
-			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
-			return "adminLogin";
-		} else if (!(adminId.equals("aaa")) || !(password.equals("himitu"))) {
-			model.addAttribute("error", "ID ・ Password が一致しません");
-			return "adminLogin";
 		}
-		return "userLogin";
+		
+		if (adminId.equals("aaa") && password.equals("himitu")) {
+			return "userLogin";
+		}
+		
+		model.addAttribute("error", "ID ・ Password が一致しません");
+		return "adminLogin";
 	}
 
 	// ユーザーログイン画面表示
