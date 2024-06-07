@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>宿詳細</title>
+</head>
+<body>
+	<header th:replace="User_header"></header>
+	
+
+<table border="1">
+	<tr>
+		<th>名前</th>
+		<th>値段</th>
+<!--		<th>日付</th>-->
+<!--		<th>人数</th>-->
+	</tr>
+	<tr th:each="customer:${customer}">
+		<td th:text="${customer.name}"></td>
+		<td th:text="${customer.price}"></td>
+<!--		<td th:text="${}"></td>-->
+<!--		<td th:text="${}"></td>	-->
+	</tr>
+</table>
+			<form action="/reserve" method="post">
+					<button>予約</button>
+			</form>
+			
+	
+</body>
+</html>
