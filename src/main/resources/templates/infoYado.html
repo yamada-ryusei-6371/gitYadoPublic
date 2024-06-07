@@ -12,12 +12,35 @@
 
 	<header th:replace="adminHeader"></header>
 
-	<h1>宿情報画面</h1>
+	<h2>宿情報画面</h2>
+	<a href="">宿新規追加</a>
 
-	<p><a href>宿検索</a></p>
-	<p><a href>宿新規登録</a></p>
-	<p><a href>宿情報更新</a></p>
-	<p><a href>宿削除</a></p>
+	<table border="1">
+		<tr>
+			<th>宿名</th>
+			<th>所在地(県名)</th>
+			<th>情報更新</th>
+			<th>情報削除</th>
+		</tr>
+<!--		<tr th:if="${.size}==0">-->
+<!--			<td colspan="3">表示可能なユーザーが存在しません。</td>-->
+		</tr>
+		<tr th:each="customer:${customerList}">
+			<td th:text="${customer.yadoname}"></td>
+			<td th:text="${customer.ken}"></td>
+			<td>
+				<form th:action="ここも決める" method="get">
+				<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="ここも決める" method="post">
+					<button>削除</button>
+				</form>
+			</td>
+			
+		</tr>
+	</table>
 
 	<p><a href="/adminTop">戻る</a></p>
 
