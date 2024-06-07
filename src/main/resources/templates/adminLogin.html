@@ -4,7 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>管理者ログイン</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
+
 </head>
+
+<body>
+	<header th:replace="adminHeader"></header>
 
 <body>
 	<h1>管理者ログイン</h1>
@@ -18,6 +24,7 @@
 	<span th:text="${error}" style="color: red;"></span>
 
 	</p>
+
 
 </body>
 
