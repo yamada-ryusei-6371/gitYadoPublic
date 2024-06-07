@@ -36,7 +36,7 @@ CREATE TABLE customers
    -- 宿情報
    information TEXT,
    -- 電話番号
-   hotelTel TEXT
+   hotelTel TEXT,
    -- 部屋数
    hotelRoom INTEGER,
    -- ホテル画像

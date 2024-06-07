@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -17,10 +18,12 @@ public class AccountController {
 	@Autowired
 	HttpSession session;
 	@Autowired
+	Account account;
+	@Autowired
 	UserRepository userRepository;
 
 	// 管理者ログイン画面表示
-	@GetMapping({ "/adminlogin", "/adminlogout" })
+	@GetMapping({ "/admin/login", "/admin/logout" })
 	public String adminIndex(Model model) {
 		// セッション情報を全てクリアする
 		session.invalidate();
@@ -29,26 +32,26 @@ public class AccountController {
 	}
 
 	// 管理者ログイン実行
-	@PostMapping("/adminlogin")
+	@PostMapping("/admin/login")
 	public String adminlogin(
 			@RequestParam(name = "adminId", defaultValue = "") String adminId,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
-		if (adminId.equals("0") || password.equals("")) {
+		if (adminId.equals("") || password.equals("")) {
 			model.addAttribute("error", "未入力の項目があります");
-			return "adminLogin";
-		} else if (!(adminId.equals("aaa")) || !(password.equals("himitu"))) {
-			model.addAttribute("error", "ID ・ Password が一致しません");
 			return "adminLogin";
 		} else if (!(8 <= password.length() && password.length() <= 20)) {
 			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
 			return "adminLogin";
+		} else if (!(adminId.equals("aaa")) || !(password.equals("himitu"))) {
+			model.addAttribute("error", "ID ・ Password が一致しません");
+			return "adminLogin";
 		}
-		return "redirect:/";
+		return "userLogin";
 	}
 
 	// ユーザーログイン画面表示
-	@GetMapping({ "/userlogin", "/userlogout" })
+	@GetMapping({ "/user/login", "/user/logout" })
 	public String userIndex(Model model) {
 		// セッション情報を全てクリアする
 		session.invalidate();
@@ -57,7 +60,7 @@ public class AccountController {
 	}
 
 	// ユーザーログイン実行
-	@PostMapping("/userlogin")
+	@PostMapping("/user/login")
 	public String userlogin(
 			@RequestParam(name = "mail", defaultValue = "") String mail,
 			@RequestParam(name = "password", defaultValue = "") String password,
@@ -67,19 +70,23 @@ public class AccountController {
 			model.addAttribute("error", "未入力の項目があります");
 			return "userLogin";
 		}
-		
+
 		if (!(8 <= password.length() && password.length() <= 20)) {
 			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
 			return "userLogin";
 		}
-		
-		if(userRepository.findAllByMailAndPassword(mail, password).size() != 0) {
+
+		if (userRepository.findAllByMailAndPassword(mail, password).size() != 0) {
 			info = userRepository.findAllByMailAndPassword(mail, password).get(0);
 		}
-		
-		if(info == null) {
-			model.addAttribute("error", "メールアドレスとパスワードが一致しません");
+
+		if (info != null) {
+			account.setName(info.getName());
+			account.setId(info.getId());
+			return "redirect:/";
 		}
+
+		model.addAttribute("error", "メールアドレスとパスワードが一致しません");
 		return "userLogin";
 	}
 
