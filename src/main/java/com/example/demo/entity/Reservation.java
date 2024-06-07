@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,33 +15,36 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "user_id")
 	private Integer userId;
+	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private Integer price;
+	@Column(name = "hotel_day")
 	private LocalDate hotelDay;
-	private LocalDate checkIn;
+	private LocalDate checkin;
 	private Integer human;
 
 	public Reservation() {
 	}
 
 	public Reservation(Integer id, Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalDate checkin, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
 		this.hotelDay = hotelDay;
-		this.checkIn = checkIn;
+		this.checkin = checkin;
 		this.human = human;
 	}
 
 	public Reservation(Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalDate checkin, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
 		this.hotelDay = hotelDay;
-		this.checkIn = checkIn;
+		this.checkin = checkin;
 		this.human = human;
 	}
 
@@ -85,11 +89,11 @@ public class Reservation {
 	}
 
 	public LocalDate getCheckIn() {
-		return checkIn;
+		return checkin;
 	}
 
-	public void setCheckIn(LocalDate checkIn) {
-		this.checkIn = checkIn;
+	public void setCheckIn(LocalDate checkin) {
+		this.checkin = checkin;
 	}
 
 	public Integer getHuman() {

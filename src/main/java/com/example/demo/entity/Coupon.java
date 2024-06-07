@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,9 @@ public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "user_id")
 	private Integer userId;
+	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private String coupon;
 
