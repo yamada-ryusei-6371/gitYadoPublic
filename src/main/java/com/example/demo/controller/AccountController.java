@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
+
 import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -18,16 +18,24 @@ public class AccountController {
 	@Autowired
 	HttpSession session;
 	@Autowired
+
 	Account account;
 	@Autowired
 	UserRepository userRepository;
 
 	// 管理者ログイン画面表示
 	@GetMapping({ "/admin/login", "/admin/logout" })
+
+	UserRepository userRepository;
+
+	// 管理者ログイン画面表示
+	@GetMapping({ "/adminlogin", "/adminlogout" })
+
 	public String adminIndex(Model model) {
 		// セッション情報を全てクリアする
 		session.invalidate();
 		// エラーパラメータのチェック
+
 		return "adminLogin";
 	}
 
@@ -84,11 +92,29 @@ public class AccountController {
 			account.setName(info.getName());
 			account.setId(info.getId());
 			return "redirect:/";
-		}
+		
 
 		model.addAttribute("error", "メールアドレスとパスワードが一致しません");
 		return "userLogin";
 	}
+
+
+		return "adminLogin";
+	}
+	
+	// 管理者ログイン実行
+	
+	// ログイン画面表示
+		@GetMapping({ "/userlogin", "/userlogout" })
+		public String userIndex(Model model) {
+			// セッション情報を全てクリアする
+			session.invalidate();
+			// エラーパラメータのチェック
+
+			return "userLogin";
+		}
+		
+		// 管理者ログイン実行
 
 	// 新規登録画面表示
 	@GetMapping("#")
