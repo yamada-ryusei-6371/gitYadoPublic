@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +14,9 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	private LocalDate birthday;
+	private String year;
+	private String month;
+	private String day;
 	private String address;
 	private String mail;
 	private String tel;
@@ -28,11 +28,13 @@ public class User {
 	public User() {
 	}
 
-	public User(Integer id, String name, LocalDate birthday, String address, String mail, String tel, String password,
+	public User(Integer id, String name, String year, String month, String day, String address, String mail, String tel, String password,
 			String accountName, Integer point) {
 		this.id = id;
 		this.name = name;
-		this.birthday = birthday;
+		this.year = year;
+		this.month = month;
+		this.day = day;
 		this.address = address;
 		this.mail = mail;
 		this.tel = tel;
@@ -41,10 +43,12 @@ public class User {
 		this.point = point;
 	}
 
-	public User(String name, LocalDate birthday, String address, String mail, String tel, String password,
+	public User(String name, String year, String month, String day, String address, String mail, String tel, String password,
 			String accountName) {
 		this.name = name;
-		this.birthday = birthday;
+		this.year = year;
+		this.month = month;
+		this.day = day;
 		this.address = address;
 		this.mail = mail;
 		this.tel = tel;
@@ -68,12 +72,28 @@ public class User {
 		this.name = name;
 	}
 
-	public LocalDate getBirthday() {
-		return birthday;
+	public String getYear() {
+		return year;
 	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	public String getAddress() {

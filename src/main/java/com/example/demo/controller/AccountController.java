@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +102,9 @@ public class AccountController {
 	@PostMapping("/user/login/add")
 	public String createUser(
 			@RequestParam(name = "name", defaultValue = "") String name,
-			@RequestParam(name = "birthday", defaultValue = "") LocalDate birthday,
+			@RequestParam(name = "year", defaultValue = "") String year,
+			@RequestParam(name = "month", defaultValue = "") String month,
+			@RequestParam(name = "day", defaultValue = "") String day,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "mail", defaultValue = "") String mail,
 			@RequestParam(name = "tel", defaultValue = "") String tel,
@@ -115,7 +116,7 @@ public class AccountController {
 		if (name.equals("") || name.length() == 0) {
 			errorlist.add("名前は必須です");
 		}
-		if (birthday.equals("")) {
+		if (year.equals("") || month.equals("") || day.equals("")) {
 			errorlist.add("生年月日は必須です");
 		}
 		if (address.equals("") || address.length() == 0) {
@@ -143,7 +144,7 @@ public class AccountController {
 			return "addUser";
 		}
 		
-		User user = new User(name, birthday, address, mail, tel, password, accountName);
+		User user = new User(name, year, month, day, address, mail, tel, password, accountName);
 		userRepository.save(user);
 		
 		return "redirect:/user/login";
