@@ -135,9 +135,17 @@ public class AccountController {
 			errorlist.add("パスワードは必須です");
 		}
 		
-		User users = userRepository.findAllByMail(mail);
-		if (users != null) {
+		if (userRepository.findAllByMail(mail) != null) {
 			errorlist.add("登録済みのメールアドレスです");
+		}
+		if(userRepository.findAllByTel(tel) != null) {
+			errorlist.add("登録済みの電話番号です");
+		}
+		if(userRepository.findAllByAccountName(accountName) != null) {
+			errorlist.add("登録済みのアカウント名です");
+		}
+		if(userRepository.findAllByPassword(password) != null) {
+			errorlist.add("既に使われているパスワードです");
 		}
 		
 		if (errorlist.size() != 0) {
