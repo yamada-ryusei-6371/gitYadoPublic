@@ -84,7 +84,7 @@
 		</tr>
 		<tr th:each="customer:${customer}">
 			<th>
-		<a th:href="@{/hotel(id=${customer.id})}" th:text="${customer.name}"></a>
+		<a th:href="@{/hotel(id=${customer.id})}" th:text="${customer.hotelName}"></a>
 		</th>
 			<td th:text="${customer.price}"></td>
 	<!--	<td th:text="${}"></td>-->
