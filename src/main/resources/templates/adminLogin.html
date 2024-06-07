@@ -12,26 +12,17 @@
 <body>
 	<header th:replace="adminHeader"></header>
 
-<body>
-	<h1>管理者ログイン</h1>
-	<p>
+	<body>
+		<h1>管理者ログイン</h1>
+		<p>
+		<form action="/admin/top" method="post">
+			<p>管理者ID<input type="text" name="adminId"></p>
+			<p>パスワード<input type="text" name="password"></p>
+			<button>ログイン</button>
+		</form>
+		<span th:text="${error}" style="color: red;"></span>
+		</p>
 
-<<<<<<< HEAD
-	<form action="/admin/top" method="post">
-=======
-	<form action="" method="post">
-		
->>>>>>> branch 'fix/rejava' of git@github.com:yamada-ryusei-6371/gitYadoPublic.git
-		<p>管理者ID<input type="text" name="adminId"></p>
-		<p>パスワード<input type="text" name="password"></p>
-		<button>ログイン</button>
-	</form>
-	
-	<span th:text="${error}" style="color: red;"></span>
-
-	</p>
-
-
-</body>
+	</body>
 
 </html>
