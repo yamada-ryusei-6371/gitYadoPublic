@@ -1,12 +1,12 @@
 -- users テーブルにデータを挿入するクエリ
-INSERT INTO users (name, mail, password, accountName, point)
+INSERT INTO users (name, mail, password, account_name, point)
 VALUES
-('伊藤一郎', 'itou.itiro@risukiru.com', 'itiro', 'イチロー', '1000'),
-('伊藤二郎', 'itou.jiro@risukiru.com', 'jiro', '二チロー', '2000')
+('伊藤一郎', 'itou.itiro@risukiru.com', 'itirohimitu', 'イチロー', 1000),
+('伊藤二郎', 'itou.jiro@risukiru.com', 'jirohimitu', '二チロー', 2000)
 ;
 
 -- languages テーブルにデータを挿入するクエリ
-INSERT INTO customers (hotelName, price, address, information, hotelTel)
+INSERT INTO customers (hotel_name, price, address, information, hotel_tel)
 VALUES
 -- 北海道
 ('定山渓ビューホテル',40000, '北海道札幌市南区定山渓温泉東2丁目', '札幌の奥座敷「定山渓」に佇む巨大スパ・リゾート。すべてのお客様に、楽しく、美味しく、心地よい寛ぎの時間を。', '011-598-3223'),
@@ -237,22 +237,22 @@ VALUES
 ;
 
 -- reservations テーブルにデータを挿入するクエリ
-INSERT INTO reservations (userId, hotelId, price, hotelDay, checkIn, human)
+INSERT INTO reservations (user_id, hotel_id, price, hotel_day, checkin, human)
 VALUES
 (1, 1, 40000, '2024-11-30', '2024-11-30 10:00',1),
 (2, 4, 10000, '2025-12-30', '2025-12-30 13:00',2);
 
 -- stars テーブルにデータを挿入するクエリ
-INSERT INTO stars (userId, hotelId, evalue, star)
+INSERT INTO stars (user_id, hotel_id, evalue, star)
 VALUES
 (1, 1, '素晴らしいホテルでした',5);
 
 -- favorites テーブルにデータを挿入するクエリ
-INSERT INTO favorites (userId, hotelId)
+INSERT INTO favorites (user_id, hotel_id)
 VALUES
 (1, 1);
 
 -- coupons テーブルにデータを挿入するクエリ
-INSERT INTO coupons (userId, hotelId, coupon)
+INSERT INTO coupons (user_id, hotel_id, coupon)
 VALUES
 (1, 1, '5％引きクーポン');

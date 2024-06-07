@@ -17,7 +17,7 @@ CREATE TABLE users
    -- パスワード
    password TEXT,
    -- アカウント名
-   accountName TEXT,
+   account_name TEXT,
    -- ポイント
    point INTEGER
 );
@@ -28,7 +28,7 @@ CREATE TABLE customers
    -- 顧客ID
    id SERIAL PRIMARY KEY,
    -- 宿名
-   hotelName TEXT,
+   hotel_name TEXT,
    -- 価格
    price INTEGER,
    -- 所在地
@@ -36,9 +36,9 @@ CREATE TABLE customers
    -- 宿情報
    information TEXT,
    -- 電話番号
-   hotelTel TEXT,
+   hotel_tel TEXT,
    -- 部屋数
-   hotelRoom INTEGER,
+   hotel_room INTEGER,
    -- ホテル画像
    image TEXT
 );
@@ -49,15 +49,15 @@ CREATE TABLE reservations
    -- 予約ID
    id SERIAL PRIMARY KEY,
    -- ユーザーID
-   userId INTEGER,
+   user_id INTEGER,
    -- 顧客ID
-   hotelId INTEGER,
+   hotel_id INTEGER,
    -- 価格
    price INTEGER,
    -- 宿泊日時
-   hotelDay DATE,
+   hotel_day DATE,
    -- チェックイン
-   checkIn DATE,
+   checkin DATE,
    -- 予約人数
    human INTEGER
 );
@@ -68,9 +68,9 @@ CREATE TABLE stars
    -- 予約ID
    id SERIAL PRIMARY KEY,
    -- ユーザーID
-   userId INTEGER,
+   user_id INTEGER,
    -- 顧客ID
-   hotelId INTEGER,
+   hotel_id INTEGER,
    -- 口コミ
    evalue TEXT,
    -- 口コミ評価
@@ -83,9 +83,9 @@ CREATE TABLE favorites
    -- お気に入りID
    id SERIAL PRIMARY KEY,
    -- ユーザーID
-   userId INTEGER,
+   user_id INTEGER,
    -- 顧客ID
-   hotelId INTEGER
+   hotel_id INTEGER
 );
 
 -- クーポンテーブル
@@ -94,9 +94,9 @@ CREATE TABLE coupons
    -- クーポンID
    id SERIAL PRIMARY KEY,
    -- ユーザーID
-   userId INTEGER,
+   user_id INTEGER,
    -- 顧客ID
-   hotelId INTEGER,
+   hotel_id INTEGER,
    -- クーポン
    coupon TEXT
 );
