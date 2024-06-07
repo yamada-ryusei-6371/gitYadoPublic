@@ -8,9 +8,9 @@
 	<header th:replace="User_header"></header>
 	
 <!--	検索-->
-<form action="" method="post">
+<form action="/" method="post">
 <!--	都道府県-->
-	<select name="pref">
+	<select name="ken">
 <option value="">選択してください</option>
 <option value="北海道">北海道</option>
 <option value="青森県">青森県</option>
@@ -62,38 +62,40 @@
 </select>
 
 <!--人数検索-->
-<input type="number"  min="1" max="8">
+<!--<input type="number"  min="1" max="8">-->
 
- <input type="date">
+<!-- <input type="date">-->
 
 <!--キーワード検索-->
-<input type="text" name="" placeholder="宿名">
+<input type="text" name="name" placeholder="宿名">
 	
 	<button>検索</button>
 	</form>
 	
 <!--宿一覧-->
-<table border="1">
-			<tr>
-				<th>名前</th>
-				<th>値段</th>
-				<th>日付</th>
-				<th>人数</th>
-				<th  th:if="${@account.id > 0}">お気に入り</th>
-				<th></th>
-			</tr>
-			<tr th:each=":${}">
-				<td th:text="${}"></td>
-				<td th:text="${}"></td>
-				<td th:text="${}"></td>
-				<td th:text="${}"></td>
-				<td th:if="${@account.id > 0}">	
-				<button>お気に入り追加</button>
-				</td>
-				<td>
-					<button>予約</button>
-				</td>
-			</tr>
-		</table>
-</body>
+
+	<table border="1">
+		<tr>
+			<th>名前</th>
+			<th>値段</th>
+	<!--	<th>日付</th>-->
+	<!--	<th>人数</th>-->
+	<!--	<th  th:if="${@account.id > 0}">お気に入り</th>-->
+		</tr>
+		<tr th:each="customer:${customer}">
+			<th>
+		<a th:href="'@{/hotel(id=${customer.id})}" th:text="${customer.name}"></a>
+		</th>
+			<td th:text="${customer.price}"></td>
+	<!--	<td th:text="${}"></td>-->
+	<!--	<td th:text="${}"></td>-->
+	<!--	<td th:if="${@account.id > 0}">	-->
+	<!--	<button>お気に入り追加</button>-->
+	<!--	</td>-->
+			<td>
+			</td>
+		</tr>
+	</table>
+		
+	</body>
 </html>
