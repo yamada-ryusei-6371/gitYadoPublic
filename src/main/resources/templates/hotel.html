@@ -80,17 +80,19 @@
 				<th>日付</th>
 				<th>人数</th>
 				<th  th:if="${@account.id > 0}">お気に入り</th>
+				<th></th>
 			</tr>
 			<tr th:each=":${}">
 				<td th:text="${}"></td>
 				<td th:text="${}"></td>
 				<td th:text="${}"></td>
 				<td th:text="${}"></td>
-				<td  th:if="${@account.id > 0}">	
+				<td th:if="${@account.id > 0}">	
 				<button>お気に入り追加</button>
-					
 				</td>
-				
+				<td>
+					<button>予約</button>
+				</td>
 			</tr>
 		</table>
 </body>
