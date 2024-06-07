@@ -1,7 +1,7 @@
 <head>
-		<h1 ><a href="" >宿予約</a></h1>
+		<h1>宿予約</a></h1>
 <!--未ログイン時-->
-<a href="" th:if="${@account.id == null}">新規登録</a>
+<a href="/user/add" th:if="${@account.id == null}">新規登録</a>
 <a href="/login"  th:if="${@account.id == null}">	ログイン</a>
 
 <!--ログイン時-->
