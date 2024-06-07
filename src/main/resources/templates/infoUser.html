@@ -4,16 +4,48 @@
 <head>
 	<meta charset="UTF-8">
 	<title>会員管理画面</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
+
 </head>
 
 <body>
-	<h1>会員管理画面</h1>
+	<header th:replace="adminHeader"></header>
 
-	<p><a href>会員検索</a></p>
-	<p><a href>会員情報更新</a></p>
-	<p><a href>会員退会</a></p>
+	<h2>会員管理画面</h2>
+
+	<table border="1">
+		<tr>
+			<th>氏名</th>
+			<th>ニックネーム</th>
+			<th>メールアドレス</th>
+			<th>情報更新</th>
+			<th>情報削除</th>
+		</tr>
+<!--		<tr th:if="${.size}==0">-->
+<!--			<td colspan="3">表示可能なユーザーが存在しません。</td>-->
+		</tr>
+		<tr th:each="user:${userList}">
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.account}"></td>
+			<td th:text="${user.email}"></td>
+			<td>
+				<form th:action="ここも決める" method="get">
+				<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="ここも決める" method="post">
+					<button>削除</button>
+				</form>
+			</td>
+			
+		</tr>
+	</table>
 
 	<p><a href>戻る</a></p>
+
+	<footer th:replace="adminFooter"></footer>
+
 
 </body>
 
