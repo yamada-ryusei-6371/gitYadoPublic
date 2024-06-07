@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>管理者画面トップ</title>
+	<meta charset="UTF-8">
+	<title>管理者画面トップ</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
 </head>
+
 <body>
-	<h1>管理者画面トップ</h1>
+	<header th:replace="adminHeader"></header>
+
 	<p>
-	<a href>会員情報</a>
+		<a href>会員情報</a>
 	</p>
 	<p>
-	<a href>宿情報</a>
+		<a href>宿情報</a>
 	</p>
+
+	<footer th:replace="adminFooter"></footer>
+
+
 </body>
+
 </html>
