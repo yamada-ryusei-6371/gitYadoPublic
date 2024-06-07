@@ -29,7 +29,6 @@
 			  <th>生年月日</th>
 			  <td>
 			  <select name="year">
-<option value="">-</option>
 <option value="1900">1900</option>
 <option value="1901">1901</option>
 <option value="1902">1902</option>
@@ -156,8 +155,8 @@
 <option value="2023">2023</option>
 <option value="2024">2024</option>
 </select> 年
+
 <select name="month">
-<option value="">-</option>
 <option value="1" selected>1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -171,8 +170,8 @@
 <option value="11">11</option>
 <option value="12">12</option>
 </select> 月
+
 <select name="day">
-<option value="">-</option>
 <option value="1" selected>1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -211,7 +210,7 @@
           <tr>
           		<th>住所</th>
           		<td>
-				  <input type="text" name="address" th:value="${address}">
+				  <input type="text" name="address" th:value="${address}"
 			  </td>
             <tr>
                 <th>電話番号（必須）</th>
