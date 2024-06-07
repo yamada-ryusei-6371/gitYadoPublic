@@ -36,7 +36,7 @@ public class AccountController {
 	}
 
 	// 管理者ログイン実行
-	@PostMapping("/admin/login")
+	@PostMapping("/admin/top")
 	public String adminlogin(
 			@RequestParam(name = "adminId", defaultValue = "") String adminId,
 			@RequestParam(name = "password", defaultValue = "") String password,
@@ -47,7 +47,7 @@ public class AccountController {
 		}
 
 		if (adminId.equals("admin") && password.equals("himitu")) {
-			return "userLogin";
+			return "adminTop";
 		}
 
 		model.addAttribute("error", "ID ・ Password が一致しません");
