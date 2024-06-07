@@ -22,29 +22,29 @@ public class Reservation {
 	private Integer price;
 	@Column(name = "hotel_day")
 	private LocalDate hotelDay;
-	private LocalDate checkin;
+	private LocalDate checkIn;
 	private Integer human;
 
 	public Reservation() {
 	}
 
 	public Reservation(Integer id, Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkin, Integer human) {
+			LocalDate hotelDay, LocalDate checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
 		this.hotelDay = hotelDay;
-		this.checkin = checkin;
+		this.checkIn = checkIn;
 		this.human = human;
 	}
 
 	public Reservation(Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkin, Integer human) {
+			LocalDate hotelDay, LocalDate checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
 		this.hotelDay = hotelDay;
-		this.checkin = checkin;
+		this.checkIn = checkIn;
 		this.human = human;
 	}
 
@@ -89,11 +89,11 @@ public class Reservation {
 	}
 
 	public LocalDate getCheckIn() {
-		return checkin;
+		return checkIn;
 	}
 
-	public void setCheckIn(LocalDate checkin) {
-		this.checkin = checkin;
+	public void setCheckIn(LocalDate checkIn) {
+		this.checkIn = checkIn;
 	}
 
 	public Integer getHuman() {
