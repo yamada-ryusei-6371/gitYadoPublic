@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.User;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.UserRepository;
@@ -79,8 +80,34 @@ public class AdminController {
 			@RequestParam("ken") String ken,
 			Model model) {
 
-		List<User> userList1 = new ArrayList<User>();
+		List<Customer> customerList1 = customerRepository.findAll();
+		List<Customer> customerList2 = new ArrayList<Customer>();
 
+		if (!yadoname.equals("") && !ken.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getHotelName().contains(yadoname)) {
+					if (customer.getAddress().contains(ken)) {
+						customerList2.add(customer);
+					}
+				}
+			}
+		} else if (!yadoname.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getHotelName().contains(yadoname)) {
+					customerList2.add(customer);
+				}
+			}
+		} else if (!ken.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getAddress().contains(ken)) {
+					customerList2.add(customer);
+				}
+			}
+		} else {
+			customerList2 = customerRepository.findAll();
+		}
+
+		model.addAttribute("customerList", customerList2);
 		return "infoYado";
 	}
 }
