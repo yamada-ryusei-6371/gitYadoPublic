@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>会員検索画面</title>
+	<meta charset="UTF-8">
+	<title>会員検索画面</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
+
 </head>
+
 <body>
+	<header th:replace="adminHeader"></header>
+
+
 	<h1>会員検索画面</h1>
-	
+
 	<p>名前<input type="text"></p>
 	<p>アカウント名<input type="text"></p>
 	<p>メールアドレス<input type="text"></p>
-	
+
 	<button>検索</button>
 
+	<footer th:replace="adminFooter"></footer>
+
+
 </body>
+
 </html>

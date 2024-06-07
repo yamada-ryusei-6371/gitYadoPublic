@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>宿情報更新</title>
+	<meta charset="UTF-8">
+	<title>宿情報更新</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
 </head>
+
 <body>
+	<header th:replace="adminHeader"></header>
+
 	<h1>宿情報更新</h1>
 	<form>
 		<p>名前<input type="text"></p>
@@ -14,5 +19,9 @@
 		<p>宿情報<input type="text"></p>
 	</form>
 	<button>更新</button>
+
+	<footer th:replace="adminFooter"></footer>
+
 </body>
+
 </html>

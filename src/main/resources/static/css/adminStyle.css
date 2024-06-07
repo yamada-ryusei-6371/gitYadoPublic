@@ -1,0 +1,16 @@
+body {
+	background-color: white;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+h2 {
+	margin: auto;
+	text-align: center;
+}
+
+body {
+	text-align: center;
+}
