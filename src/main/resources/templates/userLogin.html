@@ -9,7 +9,7 @@
 		<h1>ログイン</h1>
 		<main>
 <!--		エラーメッセージ-->
-		<span th:text="${}" style="color: red"></span>
+		<span th:text="${error}" style="color: red"></span>
 	
 	<form action="/user/login" method="post">
 		<table border="1">
