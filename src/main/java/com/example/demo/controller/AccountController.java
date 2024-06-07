@@ -75,11 +75,6 @@ public class AccountController {
 			return "userLogin";
 		}
 
-		if (!(8 <= password.length() && password.length() <= 20)) {
-			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
-			return "userLogin";
-		}
-
 		if (userRepository.findAllByMailAndPassword(mail, password) != null) {
 			info = userRepository.findAllByMailAndPassword(mail, password);
 		}
