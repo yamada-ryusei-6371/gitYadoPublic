@@ -44,7 +44,7 @@ public class AccountController {
 			return "adminLogin";
 		}
 
-		if (adminId.equals("aaa") && password.equals("himitu")) {
+		if (adminId.equals("admin") && password.equals("himitu")) {
 			return "userLogin";
 		}
 
