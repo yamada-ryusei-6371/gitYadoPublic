@@ -23,7 +23,7 @@ public class AccountController {
 	UserRepository userRepository;
 
 	// 管理者ログイン画面表示
-	@GetMapping({ "/adminlogin", "/adminlogout" })
+	@GetMapping({ "/admin/login", "/admin/logout" })
 
 	public String adminIndex(Model model) {
 		// セッション情報を全てクリアする
@@ -44,7 +44,7 @@ public class AccountController {
 			return "adminLogin";
 		}
 
-		if (adminId.equals("aaa") && password.equals("himitu")) {
+		if (adminId.equals("admin") && password.equals("himitu")) {
 			return "userLogin";
 		}
 
@@ -67,16 +67,14 @@ public class AccountController {
 			@RequestParam(name = "mail", defaultValue = "") String mail,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
+		
 		User info = null;
+		
 		if (mail.equals("") || password.equals("")) {
 			model.addAttribute("error", "未入力の項目があります");
 			return "userLogin";
 		}
 
-		if (!(8 <= password.length() && password.length() <= 20)) {
-			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
-			return "userLogin";
-		}
 
 		if (userRepository.findAllByMailAndPassword(mail, password) != null) {
 			info = userRepository.findAllByMailAndPassword(mail, password);
@@ -85,7 +83,7 @@ public class AccountController {
 		if (info != null) {
 			account.setName(info.getName());
 			account.setId(info.getId());
-			return "redirect:/";
+			return "adminLogin";
 		}
 
 		model.addAttribute("error", "メールアドレスとパスワードが一致しません");
