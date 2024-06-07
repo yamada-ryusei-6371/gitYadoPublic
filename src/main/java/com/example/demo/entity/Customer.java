@@ -17,25 +17,33 @@ public class Customer {
 	private String address;
 	private String information;
 	private String hotelTel;
-	
+	private Integer hotelRoom;
+	private String image;
+
 	public Customer() {
 	}
-	
-	public Customer(Integer id, String hotelName, Integer price, String address, String information, String hotelTel) {
+
+	public Customer(Integer id, String hotelName, Integer price, String address, String information, String hotelTel,
+			Integer hotelRoom, String image) {
 		this.id = id;
 		this.hotelName = hotelName;
 		this.price = price;
 		this.address = address;
 		this.information = information;
 		this.hotelTel = hotelTel;
+		this.hotelRoom = hotelRoom;
+		this.image = image;
 	}
-	
-	public Customer(String hotelName, Integer price, String address, String information, String hotelTel) {
+
+	public Customer(String hotelName, Integer price, String address, String information, String hotelTel,
+			Integer hotelRoom, String image) {
 		this.hotelName = hotelName;
 		this.price = price;
 		this.address = address;
 		this.information = information;
 		this.hotelTel = hotelTel;
+		this.hotelRoom = hotelRoom;
+		this.image = image;
 	}
 
 	public Integer getId() {
@@ -85,6 +93,21 @@ public class Customer {
 	public void setHotelTel(String hotelTel) {
 		this.hotelTel = hotelTel;
 	}
-	
-	
+
+	public Integer getHotelRoom() {
+		return hotelRoom;
+	}
+
+	public void setHotelRoom(Integer hotelRoom) {
+		this.hotelRoom = hotelRoom;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }

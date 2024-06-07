@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,29 +25,69 @@ public class AccountController {
 		// セッション情報を全てクリアする
 		session.invalidate();
 		// エラーパラメータのチェック
-
 		return "adminLogin";
 	}
-	
-	// 管理者ログイン実行
-	
-	// ログイン画面表示
-		@GetMapping({ "/userlogin", "/userlogout" })
-		public String userIndex(Model model) {
-			// セッション情報を全てクリアする
-			session.invalidate();
-			// エラーパラメータのチェック
 
+	// 管理者ログイン実行
+	@PostMapping("/adminlogin")
+	public String adminlogin(
+			@RequestParam(name = "adminId", defaultValue = "") String adminId,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			Model model) {
+		if (adminId.equals("0") || password.equals("")) {
+			model.addAttribute("error", "未入力の項目があります");
+			return "adminLogin";
+		} else if (!(adminId.equals("aaa")) || !(password.equals("himitu"))) {
+			model.addAttribute("error", "ID ・ Password が一致しません");
+			return "adminLogin";
+		} else if (!(8 <= password.length() && password.length() <= 20)) {
+			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
+			return "adminLogin";
+		}
+		return "redirect:/";
+	}
+
+	// ユーザーログイン画面表示
+	@GetMapping({ "/userlogin", "/userlogout" })
+	public String userIndex(Model model) {
+		// セッション情報を全てクリアする
+		session.invalidate();
+		// エラーパラメータのチェック
+		return "userLogin";
+	}
+
+	// ユーザーログイン実行
+	@PostMapping("/userlogin")
+	public String userlogin(
+			@RequestParam(name = "mail", defaultValue = "") String mail,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			Model model) {
+		User info = null;
+		if (mail.equals("0") || password.equals("")) {
+			model.addAttribute("error", "未入力の項目があります");
 			return "userLogin";
 		}
 		
-		// 管理者ログイン実行
+		if (!(8 <= password.length() && password.length() <= 20)) {
+			model.addAttribute("error", "パスワードは8文字以上、２０文字以下です");
+			return "userLogin";
+		}
+		
+		if(userRepository.findAllByMailAndPassword(mail, password).size() != 0) {
+			info = userRepository.findAllByMailAndPassword(mail, password).get(0);
+		}
+		
+		if(info == null) {
+			model.addAttribute("error", "メールアドレスとパスワードが一致しません");
+		}
+		return "userLogin";
+	}
 
 	// 新規登録画面表示
 	@GetMapping("#")
 	public String create() {
 		return "#";
 	}
-	
+
 	// 新規登録実行
 }
