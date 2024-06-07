@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>管理者ログイン</title>
+
 	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
 
 </head>
@@ -11,16 +12,18 @@
 <body>
 	<header th:replace="adminHeader"></header>
 
-	<h2>管理者ログイン</h2>
+<body>
+	<h1>管理者ログイン</h1>
+	<p>
 
-	<form action="/admin/top" method="post">
-		<p>管理者ID <input type="text" name="adminId"></p>
-		<p>パスワード <input type="password" name="password"></p>
-
+	<form action="/admin/login" method="post">
+		<p>管理者ID<input type="text" name="adminId"></p>
+		<p>パスワード<input type="text" name="password"></p>
 		<button>ログイン</button>
-		</form>
+	</form>
+	<span th:text="${error}" style="color: red;"></span>
 
-		<footer th:replace="adminFooter"></footer>
+	</p>
 
 
 </body>
