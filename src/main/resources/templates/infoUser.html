@@ -24,7 +24,7 @@
 <!--		<tr th:if="${.size}==0">-->
 <!--			<td colspan="3">表示可能なユーザーが存在しません。</td>-->
 		</tr>
-		<tr th:each="user:${userList}">
+		<tr th:each="user:${userList1}">
 			<td th:text="${user.name}"></td>
 			<td th:text="${user.account}"></td>
 			<td th:text="${user.email}"></td>

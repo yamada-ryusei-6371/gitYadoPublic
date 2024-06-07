@@ -9,14 +9,16 @@
 
 <body>
 	<header th:replace="adminHeader"></header>
+	<h2>＜メニュー＞</h2>
 
-	<p>
-		<a href="/admin/user">会員情報</a>
-	</p>
-	<p>
-		<a href="/admin/customer">宿情報</a>
-	</p>
-
+	<form action="/admin/user" method="get">
+		<button>会員情報へ</button>
+	</form>
+	<br>
+	<form action="/admin/customer" method="get">
+		<button>顧客情報へ</button>
+	</form>
+	<br>
 	<footer th:replace="adminFooter"></footer>
 
 

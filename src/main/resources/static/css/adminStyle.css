@@ -14,3 +14,8 @@ h2 {
 body {
 	text-align: center;
 }
+
+header ,footer {
+	background-color: gray;
+
+}
