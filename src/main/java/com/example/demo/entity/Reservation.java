@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,14 +23,14 @@ public class Reservation {
 	private Integer price;
 	@Column(name = "hotel_day")
 	private LocalDate hotelDay;
-	private LocalDate checkIn;
+	private LocalTime checkIn;
 	private Integer human;
 
 	public Reservation() {
 	}
 
 	public Reservation(Integer id, Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalTime checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
@@ -39,7 +40,7 @@ public class Reservation {
 	}
 
 	public Reservation(Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalTime checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
@@ -88,11 +89,11 @@ public class Reservation {
 		this.hotelDay = hotelDay;
 	}
 
-	public LocalDate getCheckIn() {
+	public LocalTime getCheckIn() {
 		return checkIn;
 	}
 
-	public void setCheckIn(LocalDate checkIn) {
+	public void setCheckIn(LocalTime checkIn) {
 		this.checkIn = checkIn;
 	}
 
