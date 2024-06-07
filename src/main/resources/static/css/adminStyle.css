@@ -1,0 +1,13 @@
+body {
+	background-color: white;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+h1 {
+	font-size: large;
+	margin: auto;
+	text-align: center;
+}
