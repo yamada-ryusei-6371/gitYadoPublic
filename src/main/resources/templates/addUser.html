@@ -11,7 +11,7 @@
     <span th:if=""
  	th:each="" th:utext="" style="color: red"><br></span>
 
-    <form action="/login/add" method="post">
+    <form action="/user/login/add" method="post">
         <table border="1">
             <tr>
                 <th>名前（必須）</th>
@@ -34,7 +34,7 @@
             <tr>
                 <th>メールアドレス（必須）</th>
                 <td>
-                    <input type="text" name="email" th:value="${email}">
+                    <input type="text" name="mail" th:value="${mail}">
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
         <button>登録</button>
     </form>
     
-    	<form action="/login" method="get">
+    	<form action="/user/login" method="get">
 		<button> 戻る</button>
 		</form>
 	</main>
