@@ -128,17 +128,18 @@ public class AccountController {
 		if (tel.equals("") || tel.length() == 0) {
 			errorlist.add("電話番号は必須です");
 		}
-		if (password.equals("")) {
-			errorlist.add("パスワードは必須です");
-		}
 		if (accountName.equals("") || accountName.length() == 0) {
 			errorlist.add("アカウント名は必須です");
 		}
+		if (password.equals("")) {
+			errorlist.add("パスワードは必須です");
+		}
 		
-//		User users = userRepository.findAllByMail(mail);
-//		if (users != null) {
-//			list.add("登録済みのメールアドレスです");
-//		}
+		User users = userRepository.findAllByMail(mail);
+		if (users != null) {
+			errorlist.add("登録済みのメールアドレスです");
+		}
+		
 		if (errorlist.size() != 0) {
 			model.addAttribute("errorlist", errorlist);
 			return "addUser";
