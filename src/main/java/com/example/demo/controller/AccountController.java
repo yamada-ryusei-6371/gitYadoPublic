@@ -23,7 +23,7 @@ public class AccountController {
 	UserRepository userRepository;
 
 	// 管理者ログイン画面表示
-	@GetMapping({ "/adminlogin", "/adminlogout" })
+	@GetMapping({ "/admin/login", "/adminlogout" })
 
 	public String adminIndex(Model model) {
 		// セッション情報を全てクリアする
