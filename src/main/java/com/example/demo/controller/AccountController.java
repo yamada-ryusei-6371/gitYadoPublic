@@ -78,8 +78,8 @@ public class AccountController {
 			return "userLogin";
 		}
 
-		if (userRepository.findAllByMailAndPassword(mail, password).size() != 0) {
-			info = userRepository.findAllByMailAndPassword(mail, password).get(0);
+		if (userRepository.findAllByMailAndPassword(mail, password) != null) {
+			info = userRepository.findAllByMailAndPassword(mail, password);
 		}
 
 		if (info != null) {
