@@ -5,6 +5,34 @@
 <title>クチコミ</title>
 </head>
 <body>
-
+	<header th:replace="User_header"></header>
+		
+	<table border="1">
+	<tr>
+		<th>名前</th>
+		<th>値段</th>
+<!--		<th>日付</th>-->
+<!--		<th>人数</th>-->
+	</tr>
+	<tr th:each="customer:${customer}">
+		<td th:text="${customer.name}"></td>
+		<td th:text="${customer.price}"></td>
+<!--		<td th:text="${}"></td>-->
+<!--		<td th:text="${}"></td>	-->
+	</tr>
+</table>
+	
+	<table>
+			<tr>
+				<th>評価</th>
+				<td>
+					<td th:text="${Star.star}">
+				</td>
+			</tr>
+			<tr>
+				<th>内容</th>
+				<td th:text="${Star.evalue}">
+			</tr>
+		</table>
 </body>
 </html>

@@ -6,5 +6,52 @@
 </head>
 <body>
 
+<table border="1">
+	<tr>
+		<th>名前</th>
+		<th>値段</th>
+<!--		<th>日付</th>-->
+<!--		<th>人数</th>-->
+	</tr>
+	<tr th:each="customer:${customer}">
+		<td th:text="${customer.name}"></td>
+		<td th:text="${customer.price}"></td>
+<!--		<td th:text="${}"></td>-->
+<!--		<td th:text="${}"></td>	-->
+	</tr>
+</table>
+
+	<!--人数検索-->
+<input type="number"  min="1" max="8">
+
+ <input type="date">
+ 
+ <select name="" id="">
+
+  <option value="10">10:00</option>
+  <option value="11">11:00</option>
+  <option value="12">12:00</option>
+  <option value="13">13:00</option>
+  <option value="14">14:00</option>
+  <option value="15">15:00</option>
+  <option value="16">16:00</option>
+  <option value="17">17:00</option>
+  <option value="18">18:00</option>
+  <option value="19">19:00</option>
+  <option value="20">20:00</option>
+  <option value="21">21:00</option>
+  <option value="22">22:00</option>
+  <option value="23">23:00</option>
+</select>
+
+<form action="" method="">
+	<button>更新</button>
+</form>
+
+<form action="" method="">
+	<button>戻る</button>
+</form>
+
+
 </body>
 </html>
