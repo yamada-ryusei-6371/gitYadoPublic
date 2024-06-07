@@ -14,6 +14,10 @@
 	<form action="form" method="post">
 		<table>
 			<tr>
+				<th>アカウント名</th>
+				<td th:text="${User.accountName}"></td>
+			</tr>
+			<tr>
 				<th>評価</th>
 				<td>
 						<input type="radio" id="star5" name="rating" value="5">
