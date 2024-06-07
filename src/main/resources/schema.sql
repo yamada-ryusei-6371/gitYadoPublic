@@ -13,7 +13,9 @@ CREATE TABLE users
    -- 名前
    name TEXT,
    -- 生年月日
-   birthday DATE,
+   year TEXT,
+   month TEXT,
+   day TEXT,
    -- 住所
    address TEXT,
    -- メアド
