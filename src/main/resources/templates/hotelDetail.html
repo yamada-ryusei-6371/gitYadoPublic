@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>宿詳細</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 	<header th:replace="User_header"></header>
@@ -12,10 +13,10 @@
 		</a>
 		<div class="right">
 			<a th:href="@{/hotel(id=${customer.id})}">
-				<b th:text="${customer.id}+':'"></b><b th:text="${costomer.hotelName}"></b>
+				<b th:text="${customer.id}+':'"></b><b th:text="${customer.hotelName}"></b>
 			</a><br>
-			<b th:text="'&yen;'+${costomer.price}" style="color: red;"></b><b th:text="'空室:'+${costomer.hotelRoom}" style="color: red;"></b><br>
-			<p th:text="${costomer.information}" class="text"></p>
+			<b th:text="'&yen;'+${customer.price}" style="color: red;"></b><b th:text="'空室:'+${customer.hotelRoom}" style="color: red;"></b><br>
+			<p th:text="${customer.information}" class="text"></p>
 			<form action="/hotel" method="post">
 				人数:<input type="text" name="people">
 				チェックイン時間:
@@ -44,7 +45,8 @@
 					<option value="22">22</option>
 					<option value="23">23</option>
 					<option value="24">24</option>
-				</select>		
+				</select><br>
+				日付<input type="date" name="date">
 				<input type="hidden" name="id" th:value="${customer.id}">
 				<input type="hidden" name="name" th:value="${customer.hotelName}">
 				<input type="hidden" name="price" th:value="${customer.price}">

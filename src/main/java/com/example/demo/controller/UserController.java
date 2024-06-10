@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +15,7 @@ import com.example.demo.entity.Customer;
 import com.example.demo.entity.Reservation;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.ReservationRepository;
 
 @Controller
 public class UserController {
@@ -25,13 +24,17 @@ public class UserController {
 	CustomerRepository customerRepository;
 
 	@Autowired
+	ReservationRepository reservationRepository;
+
+	@Autowired
 	Account account;
 
 	@GetMapping("/userTop")
-	public String index(@RequestParam("name") String name,
-			@RequestParam("ken") String ken,
-			@RequestParam("date") LocalDate date,
-			@RequestParam("people") Integer people,
+	public String index(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "ken", defaultValue = "") String ken,
+			@RequestParam(name = "date", defaultValue = "") LocalDate date,
+			@RequestParam(name = "people", defaultValue = "") Integer people,
 			Model model) {
 
 		List<Customer> customerList1 = customerRepository.findAll();
@@ -58,12 +61,8 @@ public class UserController {
 			}
 		}
 		if (customerList2.size() == 0) {
-			if (!name.equals("") || !ken.equals("")) {
-
-			}
 			customerList2 = customerRepository.findAll();
 		}
-
 		model.addAttribute("customerList", customerList2);
 
 		return "hotel";
@@ -78,27 +77,40 @@ public class UserController {
 		return "hotelDetail";
 	}
 
-	@PostMapping("/reserve/content/{id}")
-	public String reserveContent(
-			@PathVariable("id") Integer hotelId,
-			@RequestParam("human") Integer human,
-			@RequestParam("date") LocalDate date,
-			@RequestParam("hour") Integer hour,
-			@RequestParam("price") Integer price,
-			@RequestParam("userId") Integer userId,
+	@PostMapping("/hotel")
+	public String reservation(
+			@RequestParam(name = "time", defaultValue = "") Integer time,
+			@RequestParam(name = "people", defaultValue = "") Integer people,
+			@RequestParam(name = "id", defaultValue = "") Integer id,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "price", defaultValue = "") Integer price,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "image", defaultValue = "") String image,
+			@RequestParam(name = "date", defaultValue = "") LocalDate date,
 			Model model) {
+		LocalDate days = LocalDate.now();
+		boolean d1 = date.isBefore(days);
+		if (d1 == true) {
+			model.addAttribute("error", "使えない日付です");
+			return "hotelDetail";
+		}
 
-		LocalTime cheakIn = LocalTime.of(hour, 00);
+		LocalDate futureDate = days.plusYears(1);
 
-		Reservation reserve = new Reservation(userId, hotelId, price, date, cheakIn, human);
+		boolean d2 = date.isAfter(futureDate);
+		if (d2 == true) {
+			model.addAttribute("error", "１年以内の日付を選択してください");
+			return "hotelDetail";
+		}
 
-		model.addAttribute("reserve", reserve);
+		Reservation reservation = new Reservation(0, id, price, date, time, people, name, image);
+		model.addAttribute("reservation", reservation);
 
 		return "reserveConfilm";
 	}
 
-	@PostMapping("/hotel")
-	public String reservation(
+	@PostMapping("/hotel/check")
+	public String check(
 			@RequestParam("time") Integer time,
 			@RequestParam("people") Integer people,
 			@RequestParam("id") Integer id,
@@ -106,9 +118,13 @@ public class UserController {
 			@RequestParam("price") Integer price,
 			@RequestParam("address") String address,
 			@RequestParam("image") String image,
+			@RequestParam("date") LocalDate date,
 			Model model) {
 
-		return "reserveConfile";
+		Reservation reservation = new Reservation(0, id, price, date, time, people, name, image);
+		reservationRepository.save(reservation);
+
+		return "/";
 	}
 
 }

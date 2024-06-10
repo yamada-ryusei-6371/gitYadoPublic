@@ -69,14 +69,13 @@ public class AccountController {
 			@RequestParam(name = "mail", defaultValue = "") String mail,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
-		
+
 		User info = null;
-		
+
 		if (mail.equals("") || password.equals("")) {
 			model.addAttribute("error", "未入力の項目があります");
 			return "userLogin";
 		}
-
 
 		if (userRepository.findAllByMailAndPassword(mail, password) != null) {
 			info = userRepository.findAllByMailAndPassword(mail, password);
@@ -85,7 +84,7 @@ public class AccountController {
 		if (info != null) {
 			account.setName(info.getName());
 			account.setId(info.getId());
-			return "adminLogin";
+			return "redirect:/userTop";
 		}
 
 		model.addAttribute("error", "メールアドレスとパスワードが一致しません");
@@ -134,28 +133,28 @@ public class AccountController {
 		if (password.equals("")) {
 			errorlist.add("パスワードは必須です");
 		}
-		
+
 		if (userRepository.findAllByMail(mail) != null) {
 			errorlist.add("登録済みのメールアドレスです");
 		}
-		if(userRepository.findAllByTel(tel) != null) {
+		if (userRepository.findAllByTel(tel) != null) {
 			errorlist.add("登録済みの電話番号です");
 		}
-		if(userRepository.findAllByAccountName(accountName) != null) {
+		if (userRepository.findAllByAccountName(accountName) != null) {
 			errorlist.add("登録済みのアカウント名です");
 		}
-		if(userRepository.findAllByPassword(password) != null) {
+		if (userRepository.findAllByPassword(password) != null) {
 			errorlist.add("既に使われているパスワードです");
 		}
-		
+
 		if (errorlist.size() != 0) {
 			model.addAttribute("errorlist", errorlist);
 			return "addUser";
 		}
-		
+
 		User user = new User(name, year, month, day, address, mail, tel, password, accountName);
 		userRepository.save(user);
-		
+
 		return "redirect:/user/login";
 	}
 }

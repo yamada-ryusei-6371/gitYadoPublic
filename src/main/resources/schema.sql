@@ -67,7 +67,7 @@ CREATE TABLE reservations
    -- チェックイン
    checkIn Time,
    -- 予約人数
-   human INTEGER
+   human INTEGER,
       -- 宿名
    hotel_name TEXT,
       -- ホテル画像
