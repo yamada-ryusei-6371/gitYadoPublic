@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
@@ -72,6 +73,20 @@ public class UserController {
 		model.addAttribute("customer", customer);
 
 		return "hotelDetail";
+	}
+
+	@PostMapping("/hotel")
+	public String reservation(
+			@RequestParam("time") Integer time,
+			@RequestParam("people") Integer people,
+			@RequestParam("id") Integer id,
+			@RequestParam("name") String name,
+			@RequestParam("price") Integer price,
+			@RequestParam("address") String address,
+			@RequestParam("image") String image,
+			Model model) {
+
+		return "reserveConfile";
 	}
 
 }

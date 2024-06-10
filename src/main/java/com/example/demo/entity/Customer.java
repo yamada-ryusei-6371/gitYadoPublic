@@ -21,6 +21,7 @@ public class Customer {
 	private String image;
 
 	public Customer() {
+
 	}
 
 	public Customer(Integer id, String hotelName, Integer price, String address, String information, String hotelTel,

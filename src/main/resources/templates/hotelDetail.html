@@ -6,26 +6,53 @@
 </head>
 <body>
 	<header th:replace="User_header"></header>
-	
-
-<table border="1">
-	<tr>
-		<th>名前</th>
-		<th>値段</th>
-<!--		<th>日付</th>-->
-<!--		<th>人数</th>-->
-	</tr>
-	<tr th:each="customer:${customer}">
-		<td th:text="${customer.name}"></td>
-		<td th:text="${customer.price}"></td>
-<!--		<td th:text="${}"></td>-->
-<!--		<td th:text="${}"></td>	-->
-	</tr>
-</table>
-			<form action="/reserve" method="post">
-					<button>予約</button>
+	<div class="flex">
+		<a th:href="@{/hotel(id=${customer.id})}">
+			<figure class="image"><img th:src="@{'/image/' + ${customer.image}}"></figure>
+		</a>
+		<div class="right">
+			<a th:href="@{/hotel(id=${customer.id})}">
+				<b th:text="${customer.id}+':'"></b><b th:text="${costomer.hotelName}"></b>
+			</a><br>
+			<b th:text="'&yen;'+${costomer.price}" style="color: red;"></b><b th:text="'空室:'+${costomer.hotelRoom}" style="color: red;"></b><br>
+			<p th:text="${costomer.information}" class="text"></p>
+			<form action="/hotel" method="post">
+				人数:<input type="text" name="people">
+				チェックイン時間:
+				<select name="time">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+				</select>		
+				<input type="hidden" name="id" th:value="${customer.id}">
+				<input type="hidden" name="name" th:value="${customer.hotelName}">
+				<input type="hidden" name="price" th:value="${customer.price}">
+				<input type="hidden" name="address" th:value="${customer.address}">
+				<input type="hidden" name="image" th:value="${customer.image}">
+				<button>予約</button>
 			</form>
-			
-	
+		</div>
+	</div>	
 </body>
 </html>

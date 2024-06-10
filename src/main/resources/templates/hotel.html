@@ -67,7 +67,7 @@
 <!--宿一覧-->
 	<div th:each="customer:${cutomerList}" class="flex">
 		<a th:href="@{/hotel(id=${customer.id})}">
-			<figure class="image"><img th:src="@{'/image/' + ${customer.image} + '.jpg'}" ></figure>
+			<figure class="image"><img th:src="@{'/image/' + ${customer.image}}" ></figure>
 		</a>
 		<div class="right">
 			<a th:href="@{/hotel(id=${customer.id})}">
