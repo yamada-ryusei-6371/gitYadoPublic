@@ -10,18 +10,45 @@
 <body>
 	<header th:replace="adminHeader"></header>
 
-	<h1>宿情報更新</h1>
-	<form>
-		<p>名前<input type="text"></p>
-		<p>価格<input type="text"></p>
-		<p>所在地<input type="text"></p>
-		<p>Tel<input type="text"></p>
-		<p>宿情報<input type="text"></p>
+	<h2>宿情報更新</h2>
+
+	<form th:action="'/admin/user/'+${user.id}+'/edit'" method="post">
+		<table border="1" align="center">
+			<tr>
+				<th>名前</th>
+				<td><input type="text" name="hotelName" th:value="${customer.hotelName}">
+				</td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td><input type="text" name="price" th:value="${customer.price}">
+				</td>
+			</tr>
+			<tr>
+				<th>所在地</th>
+				<td><input type="text" name="address" th:value="${customer.address}">
+				</td>
+			</tr>
+			<tr>
+				<th>Tel</th>
+				<td><input type="text" name="hotelTel" th:value="${customer.hotelTel}">
+				</td>
+			</tr>
+			<tr>
+				<th>宿情報</th>
+				<td><input type="text" name="information" th:value="${customer.information}">
+				</td>
+			</tr>
+
+		</table>
+		<input type="hidden" name="id" th:value="${customer.id}">
+		<input type="hidden" name="room" th:value="${customer.hotelRoom}">
+		<input type="hidden" name="image" th:value="${customer.image}">
+
+		<br>
+			<button>更新</button>
 	</form>
-	<button>更新</button>
-
 	<footer th:replace="adminFooter"></footer>
-
 </body>
 
 </html>
