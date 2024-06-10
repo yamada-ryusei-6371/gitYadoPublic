@@ -5,11 +5,17 @@
 <title>アカウント削除申請</title>
 </head>
 <body>
-<h1>アカウント削除申請を行います</h1>
-
-<header th:replace="User_header"></header>
-<form action="" method="">
-	<button>申請</button>
-</form>
+	<h1>アカウント削除ページ</h1>
+	<p>
+		アカウントの削除申請をする場合は「削除申請」ボタンを押してください
+	</p>
+	<form action="/deleteComplete" method="post">
+		<input type="hidden" name="id" th:value="${user.id}">
+		<input type="hidden" name="taikai" th:value="${user.id}+':'+${user.name}+'が退会したいです'">
+		<button>削除申請</button>
+	</form>
+	<p>
+	<button type="button" onclick="history.back()">戻る</button>
+	</p>
 </body>
 </html>
