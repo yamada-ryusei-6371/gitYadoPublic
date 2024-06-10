@@ -2,20 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<title>会員情報更新</title>
 	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
-
 </head>
 
 <body>
-	<header th:replace="adminHeader"></header>
-
-
+<header th:replace="adminHeader"></header>
 	<h1>会員情報更新</h1>
-
-	<footer th:replace="adminFooter"></footer>
-
+	<form action="/mypage" method="post">
+		<p>
+			名前：<input type="text" name="name">
+		</p>
+		<p>
+			住所：<input type="text" name="name">
+		</p>
+		<p>
+			メールアドレス：<input type="text" name="mail">
+		</p>
+		<p>
+			パスワード：<input type="password" name="password">
+		</p>
+	<button input type="submit" name="button1" value="送信する">更新</button>
+	</form>	
+<footer th:replace="adminFooter"></footer>
 </body>
-
 </html>

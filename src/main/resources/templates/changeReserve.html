@@ -6,27 +6,16 @@
 </head>
 <body>
 
-<table border="1">
-	<tr>
-		<th>名前</th>
-		<th>値段</th>
-<!--		<th>日付</th>-->
-<!--		<th>人数</th>-->
-	</tr>
-	<tr th:each="customer:${customer}">
-		<td th:text="${customer.name}"></td>
-		<td th:text="${customer.price}"></td>
-<!--		<td th:text="${}"></td>-->
-<!--		<td th:text="${}"></td>	-->
-	</tr>
-</table>
+<table border="1" th:each="history:${history}">
+
+<span th:replace="reserve"></span>
 
 	<!--人数検索-->
 <input type="number"  min="1" max="8">
 
  <input type="date">
  
- <select name="" id="">
+ <select name="hour" id="hour">
 
   <option value="10">10:00</option>
   <option value="11">11:00</option>
@@ -44,14 +33,14 @@
   <option value="23">23:00</option>
 </select>
 
-<form action="" method="">
+<form action="">
 	<button>更新</button>
 </form>
 
-<form action="" method="">
+<form action="/history">
+	<input type="hidden" name="id" th:value="${@account.id}">
 	<button>戻る</button>
 </form>
-
 
 </body>
 </html>
