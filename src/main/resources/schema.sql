@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS stars;
 DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS coupons;
+DROP TABLE IF EXISTS zerorooms;
 -- 会員テーブル
 CREATE TABLE users
 (
@@ -65,7 +66,7 @@ CREATE TABLE reservations
    -- 宿泊日時
    hotel_day DATE,
    -- チェックイン
-   checkIn Time,
+   checkIn INTEGER,
    -- 予約人数
    human INTEGER
       -- 宿名
@@ -112,3 +113,15 @@ CREATE TABLE coupons
    -- クーポン
    coupon TEXT
 );
+
+-- 空室管理テーブル
+CREATE TABLE zerorooms
+(
+   -- 空室ID
+   id SERIAL PRIMARY KEY,
+   -- 顧客ID
+   hotel_id INTEGER,
+   -- ルームID
+   room_id INTEGER
+);
+
