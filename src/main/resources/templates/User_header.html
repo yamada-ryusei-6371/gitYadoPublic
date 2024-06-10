@@ -1,11 +1,10 @@
 <head>
-		<h1>宿予約</a></h1>
-<!--未ログイン時-->
-<a href="/user/add" th:if="${@account.id == null}">新規登録</a>
-<a href="/user/login"  th:if="${@account.id == null}">	ログイン</a>
-
-<!--ログイン時-->
-<a href="/mypage"  th:if="${@account.id > 0}">会員サービス</a>
-<a href="/user/logout"  th:if="${@account.id > 0}">ログアウト</a>
-		
+	<a href="/"><h1>宿予約</h1></a>
+	<!--未ログイン時-->
+	<a href="/user/add" th:if="${@account.id == null}">新規登録</a>
+	<a href="/user/login"  th:if="${@account.id == null}">	ログイン</a>
+	
+	<!--ログイン時-->
+	<a href="/mypage"  th:if="${@account.id}">会員サービス</a>
+	<a href="/user/logout"  th:if="${@account.id}">ログアウト</a>		
 </head>
