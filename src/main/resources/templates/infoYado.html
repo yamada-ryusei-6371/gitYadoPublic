@@ -15,22 +15,19 @@
 	<h2>宿情報画面</h2>
 	<a href="">宿新規追加</a>
 
-	<table border="1">
+	<table border="1" align="center">
 		<tr>
 			<th>宿名</th>
 			<th>所在地(県名)</th>
 			<th>情報更新</th>
 			<th>情報削除</th>
 		</tr>
-<!--		<tr th:if="${.size}==0">-->
-<!--			<td colspan="3">表示可能なユーザーが存在しません。</td>-->
-		</tr>
 		<tr th:each="customer:${customerList}">
-			<td th:text="${customer.yadoname}"></td>
-			<td th:text="${customer.ken}"></td>
+			<td th:text="${customer.hotelName}"></td>
+			<td th:text="${customer.address}"></td>
 			<td>
 				<form th:action="ここも決める" method="get">
-				<button>更新</button>
+					<button>更新</button>
 				</form>
 			</td>
 			<td>
@@ -38,11 +35,9 @@
 					<button>削除</button>
 				</form>
 			</td>
-			
+
 		</tr>
 	</table>
-
-	<p><a href="/adminTop">戻る</a></p>
 
 	<footer th:replace="adminFooter"></footer>
 

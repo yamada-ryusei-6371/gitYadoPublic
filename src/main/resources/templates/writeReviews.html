@@ -11,8 +11,12 @@
 	
 	<header th:replace="User_header"></header>
 	
-	<form action="form" method="post">
+	<form action="/" method="post">
 		<table>
+			<tr>
+				<th>アカウント名</th>
+				<td th:text="${User.accountName}"></td>
+			</tr>
 			<tr>
 				<th>評価</th>
 				<td>
@@ -24,14 +28,8 @@
 				</td>
 			</tr>
 			<tr>
-				<th>タイトル</th>
-				<td>
-					<input type="text" name="title">
-				</td>
-			</tr>
-			<tr>
 				<th>内容</th>
-				<td><textarea id="message" name="review" cols="50" rows="12" required></textarea></td>
+				<td><textarea id="message" name="evalue" cols="50" rows="12" required></textarea></td>
 			</tr>
 		</table>
 

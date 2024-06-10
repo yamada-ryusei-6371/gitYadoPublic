@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Reservation;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomerRepository;
 
@@ -22,8 +26,9 @@ public class UserController {
 
 	@Autowired
 	Account account;
+	
 
-	@GetMapping("/")
+	@GetMapping("/userTop")
 	public String index(@RequestParam("name") String name,
 			@RequestParam("ken") String ken,
 			@RequestParam("date") LocalDate date,
@@ -72,6 +77,25 @@ public class UserController {
 		model.addAttribute("customer", customer);
 
 		return "hotelDetail";
+	}
+	
+	@PostMapping("/reserve/content/{id}")
+	public String reserveContent(
+			@PathVariable("id") Integer hotelId,
+			@RequestParam("human") Integer human,
+			@RequestParam("date") LocalDate date,
+			@RequestParam("hour") Integer hour,
+			@RequestParam("price") Integer price,
+			@RequestParam("userId") Integer userId,
+			Model model) {
+		
+		LocalTime cheakIn = LocalTime.of(hour, 00);
+		
+		Reservation reserve = new Reservation(userId, hotelId, price, date, cheakIn, human);
+		
+		model.addAttribute("reserve",reserve);
+		
+		return "reserveConfilm";
 	}
 
 }
