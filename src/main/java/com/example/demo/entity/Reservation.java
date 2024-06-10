@@ -25,6 +25,9 @@ public class Reservation {
 	private LocalDate hotelDay;
 	private LocalTime checkIn;
 	private Integer human;
+	@Column(name = "hotel_name")
+	private String hotelName;
+	private String image;
 
 	public Reservation() {
 	}
@@ -104,5 +107,23 @@ public class Reservation {
 	public void setHuman(Integer human) {
 		this.human = human;
 	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 
 }
