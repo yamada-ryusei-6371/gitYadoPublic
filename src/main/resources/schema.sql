@@ -125,3 +125,13 @@ CREATE TABLE zerorooms
    room_id INTEGER
 );
 
+--お問い合わせテーブル
+CREATE TABLE inquiry
+( 
+   --お問い合わせID
+   id SERIAL PRIMARY KEY,
+   --お問い合わせ内容
+   contents TEXT,
+   --宿予約ID
+   reserve_id INTEGER
+  ); 
