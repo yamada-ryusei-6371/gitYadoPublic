@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>予約完了</title>
-</head>
-<body>
-	<header th:replace="User_header"></header>
+<table border="1">
+	<tr>
+		<td rowspan="3">画像</td>
+		<td colspan="5" th:text="history.hotelName"></td>
+	</tr> 
+	<tr>
+		<td>チェックイン</td>
+		<td th:text="history.hotelDate"></td>
+		<td th:text="history.checkIn"></td>
+		<td>人数</td>
+		<td th:text="history.human"></td>
+	</tr>
+	<tr>
+		<td colspan="5" th:text="history.price">円</td>
 	
-<h1>予約完了しました。</h1>
-<form action="/mypage" method="post">
-	<button>戻る</button>
-</body>
-</html>
+	</tr>
+</table>
