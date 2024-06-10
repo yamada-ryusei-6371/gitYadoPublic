@@ -37,6 +37,12 @@ public class Star {
 		this.evalue = evalue;
 		this.star = star;
 	}
+	
+	
+	public Star(Integer star,String evalue) {
+		this.star = star;
+		this.evalue = evalue;
+	}
 
 	public Integer getId() {
 		return id;

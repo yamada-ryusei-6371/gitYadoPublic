@@ -13,17 +13,62 @@
 
 	<h1>宿新規登録</h1>
 
-	<p>名前<input type="text"></p>
-	<p>価格<input type="text"></p>
-	<p>所在地<input type="text"></p>
-	<p>Tel<input type="text"></p>
-	<p>宿情報<input type="text"></p>
+	<form action="/admin/customer/add" method="post">
+		<table border="1" align="center">
 
-	<button>登録</button>
+			<tr>
+				<th>名前</th>
+				<td><input type="text" name="hotelName">
+				</td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td><input type="text" name="price">
+				</td>
+			</tr>
+			<tr>
+				<th>県</th>
+				<td><input type="text" name="address1">
+				</td>
+			</tr>
+			<tr>
+				<th>市町村</th>
+				<td><input type="text" name="address2">
+				</td>
+			</tr>
+			<tr>
+				<th>番地以降</th>
+				<td><input type="text" name="address3">
+				</td>
+			</tr>
+			<tr>
+				<th>Tel</th>
+				<td><input type="text" name="hotelTel">
+				</td>
+			</tr>
+			<tr>
+				<th>宿情報</th>
+				<td><input type="text" name="information">
+				</td>
+			</tr>
+			<tr>
+				<th>総部屋数</th>
+				<td><input type="text" name="hotelRoom">
+				</td>
+			</tr>
+			<tr>
+				<th>参考画像</th>
+				<td><input type="text" name="image">.jpg
+				</td>
+			</tr>
 
+		</table>
+		<br>
+		<button>登録</button>
+		<br>
+		<a href="/admin/customer">前のページへ戻る</a>
+	</form>
 	<footer th:replace="adminFooter"></footer>
-
-
 </body>
 
 </html>

@@ -4,38 +4,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>クチコミ書き込み</title>
-
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-	
+
 	<header th:replace="User_header"></header>
-	
-	<form action="form" method="post">
+
+	<form action="/writeReviews" method="get">
 		<table>
 			<tr>
 				<th>アカウント名</th>
-				<td th:text="${User.accountName}"></td>
+<!--			<td th:text="${user.accountName}"></td>-->
 			</tr>
 			<tr>
 				<th>評価</th>
 				<td>
-						<input type="radio" id="star5" name="rating" value="5">
-						<input type="radio" id="star4" name="rating" value="4">
-						<input type="radio" id="star3" name="rating" value="3">
-						<input type="radio" id="star2" name="rating" value="2">
-						<input type="radio" id="star1" name="rating" value="1">
-				</td>
-			</tr>
-			<tr>
-				<th>タイトル</th>
-				<td>
-					<input type="text" name="title">
+					<div class="review">
+						<div class="stars">
+							<span>
+								<input id="review01" value="1" type="radio" name="star"><label for="review01">★</label>
+								<input id="review02" value="2" type="radio" name="star"><label for="review02">★</label>
+								<input id="review03" value="3" type="radio" name="star"><label for="review03">★</label>
+								<input id="review04" value="4" type="radio" name="star"><label for="review04">★</label>
+								<input id="review05" value="5" type="radio" name="star"><label for="review05">★</label>
+							</span>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<th>内容</th>
-				<td><textarea id="message" name="review" cols="50" rows="12" required></textarea></td>
+				<td><textarea name="evalue" cols="50" rows="12" required></textarea></td>
 			</tr>
 		</table>
 
