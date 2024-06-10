@@ -7,5 +7,33 @@
 <body>
 	<header th:replace="User_header"></header>
 
+<table border="1" th:each="history:${history}">
+	<tr>
+		<td rowspan="3"  th:text="history.image">画像</td>
+		<td colspan="5" th:text="history.hotelName">宿名</td>
+	</tr> 
+	<tr>
+		<td>チェックイン</td>
+		<td th:text="history.hotelDate">日にち</td>
+		<td th:text="history.checkIn">時間</td>
+		<td>人数</td>
+		<td th:text="history.human">人</td>
+	</tr>
+	<tr>
+		<td colspan="3" th:text="history.price">円</td>
+		<td>
+			<form action="/reserve/edit">
+				<button>更新</button>
+			</form>
+		</td>
+			<td>
+			<form action="/reserve/cancel">
+				<button>キャンセル</button>
+			</form>
+		</td>
+	</tr>
+</table>
+
+
 </body>
 </html>

@@ -1,12 +1,12 @@
 -- users テーブルにデータを挿入するクエリ
-INSERT INTO users (name, mail, password, accountName, point)
+INSERT INTO users (name, year, month, day, address, mail, tel, password, account_name, point)
 VALUES
-('伊藤一郎', 'itou.itiro@risukiru.com', 'itiro', 'イチロー', '1000'),
-('伊藤二郎', 'itou.jiro@risukiru.com', 'jiro', '二チロー', '2000')
+('伊藤一郎', '2004', '2', '29', '北海道札幌市', 'itou.itiro@risukiru.com', '111-2222-3333', 'itirohimitu', 'イチロー', 1000),
+('伊藤二郎', '2024', '2', '28', '東京都新宿区', 'itou.jiro@risukiru.com', '000-0000-0000', 'jirohimitu', '二チロー', 2000)
 ;
 
 -- languages テーブルにデータを挿入するクエリ
-INSERT INTO customers (hotelName, price, address, information, hotelTel)
+INSERT INTO customers (hotel_name, price, address, information, hotel_tel)
 VALUES
 -- 北海道
 ('定山渓ビューホテル',40000, '北海道札幌市南区定山渓温泉東2丁目', '札幌の奥座敷「定山渓」に佇む巨大スパ・リゾート。すべてのお客様に、楽しく、美味しく、心地よい寛ぎの時間を。', '011-598-3223'),
@@ -115,7 +115,7 @@ VALUES
 ('龍神温泉　季楽里龍神',15950,'和歌山県田辺市龍神村龍神189','秘境の地に湧く歴史ある“日本三美人の湯','0739-79-0331'),
 
 --鳥取県
-('三朝温泉 三朝ロワイヤルホテル',9900,'鳥取県東伯群三朝町三朝365-1','世界有数のラドン含有量の湯を満喫','0858-43-0431'),
+('三朝温泉 三朝ロイヤルホテル',9900,'鳥取県東伯群三朝町三朝365-1','世界有数のラドン含有量の湯を満喫','0858-43-0431'),
 ('皆生温泉 三井別館',9000,'鳥取県米子市皆生温泉3-12-33','海の資源がもたらす快適性を利用して心身を癒す','0859-31-1100'),
 ('はわい温泉 千年亭',13700,'鳥取県東伯郡湯梨浜町はわい温泉5-22','美しい東郷湖の湖底から湧き出る温泉','0858-35-4052' ),
 
@@ -237,22 +237,22 @@ VALUES
 ;
 
 -- reservations テーブルにデータを挿入するクエリ
-INSERT INTO reservations (userId, hotelId, price, hotelDay, checkIn, human)
+INSERT INTO reservations (user_id, hotel_id, price, hotel_day, checkIn, human)
 VALUES
 (1, 1, 40000, '2024-11-30', '2024-11-30 10:00',1),
 (2, 4, 10000, '2025-12-30', '2025-12-30 13:00',2);
 
 -- stars テーブルにデータを挿入するクエリ
-INSERT INTO stars (userId, hotelId, evalue, star)
+INSERT INTO stars (user_id, hotel_id, evalue, star)
 VALUES
 (1, 1, '素晴らしいホテルでした',5);
 
 -- favorites テーブルにデータを挿入するクエリ
-INSERT INTO favorites (userId, hotelId)
+INSERT INTO favorites (user_id, hotel_id)
 VALUES
 (1, 1);
 
 -- coupons テーブルにデータを挿入するクエリ
-INSERT INTO coupons (userId, hotelId, coupon)
+INSERT INTO coupons (user_id, hotel_id, coupon)
 VALUES
 (1, 1, '5％引きクーポン');

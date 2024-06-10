@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
@@ -23,7 +24,19 @@ public class AdminController {
 	@Autowired
 	UserRepository userRepository;
 
+	@GetMapping("/admin/top")
+	public String admintop(Model model) {
+		return "adminTop";
+	}
+
 	@GetMapping("/admin/user")
+	public String usertop(Model model) {
+		List<User> userList = userRepository.findAll();
+		model.addAttribute("userList", userList);
+		return "infoUser";
+	}
+
+	@GetMapping("/admin/user/result")
 	public String index(
 			@RequestParam("name") String name,
 			@RequestParam("account") String account,
@@ -74,7 +87,23 @@ public class AdminController {
 		return "infoUser";
 	}
 
+	@GetMapping("/user/{id}/update")
+	public String update(
+			@PathVariable("id") Integer id, Model model) {
+		User user = userRepository.findById(id).get();
+		model.addAttribute("users", user);
+
+		return "updateUser";
+	}
+
 	@GetMapping("/admin/customer")
+	public String customertop(Model model) {
+		List<Customer> customerList = customerRepository.findAll();
+		model.addAttribute("customerList", customerList);
+		return "infoYado";
+	}
+
+	@GetMapping("/admin/customer/info")
 	public String index(
 			@RequestParam("yadoname") String yadoname,
 			@RequestParam("ken") String ken,

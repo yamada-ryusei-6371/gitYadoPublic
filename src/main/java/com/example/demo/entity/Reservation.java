@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,18 +16,24 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "user_id")
 	private Integer userId;
+	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private Integer price;
+	@Column(name = "hotel_day")
 	private LocalDate hotelDay;
-	private LocalDate checkIn;
+	private LocalTime checkIn;
 	private Integer human;
+	@Column(name = "hotel_name")
+	private String hotelName;
+	private String image;
 
 	public Reservation() {
 	}
 
 	public Reservation(Integer id, Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalTime checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
@@ -35,7 +43,7 @@ public class Reservation {
 	}
 
 	public Reservation(Integer userId, Integer hotelId, Integer price,
-			LocalDate hotelDay, LocalDate checkIn, Integer human) {
+			LocalDate hotelDay, LocalTime checkIn, Integer human) {
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.price = price;
@@ -84,11 +92,11 @@ public class Reservation {
 		this.hotelDay = hotelDay;
 	}
 
-	public LocalDate getCheckIn() {
+	public LocalTime getCheckIn() {
 		return checkIn;
 	}
 
-	public void setCheckIn(LocalDate checkIn) {
+	public void setCheckIn(LocalTime checkIn) {
 		this.checkIn = checkIn;
 	}
 
@@ -99,5 +107,23 @@ public class Reservation {
 	public void setHuman(Integer human) {
 		this.human = human;
 	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 
 }
