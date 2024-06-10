@@ -13,7 +13,7 @@
 	<header th:replace="adminHeader"></header>
 
 	<h2>宿情報画面</h2>
-	<a href="">宿新規追加</a>
+	<a href="/admin/customer/add">宿新規追加</a>
 	
 	<form action="/admin/customer/result" method="get">
 		<input type="text" name="yadoname" th:value="${yadoname}" placeholder="宿名">
@@ -24,7 +24,7 @@
 	<table border="1" align="center">
 		<tr>
 			<th>宿名</th>
-			<th>所在地(県名)</th>
+			<th>県名</th>
 			<th>情報更新</th>
 			<th>情報削除</th>
 		</tr>
@@ -40,6 +40,7 @@
 				<form th:action="'/admin/customer/'+${customer.id}+'/delete'" method="post">
 					<button>削除</button>
 				</form>
+				
 			</td>
 
 		</tr>
