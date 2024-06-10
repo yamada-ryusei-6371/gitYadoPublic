@@ -255,3 +255,8 @@ VALUES
 INSERT INTO coupons (user_id, hotel_id, coupon)
 VALUES
 (1, 1, '5％引きクーポン');
+
+-- zerorooms 
+INSERT INTO zerorooms (hotel_id, room_id)
+VALUES 
+(1,1);
