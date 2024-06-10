@@ -38,6 +38,13 @@ public class User {
 		this.point = point;
 	}
 
+	public User(String name, String mail, String accountName, Integer point) {
+		this.name = name;
+		this.mail = mail;
+		this.accountName = accountName;
+		this.point = point;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

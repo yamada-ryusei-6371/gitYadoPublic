@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	Account account;
 
-	@GetMapping("/")
+	@GetMapping("/userTop")
 	public String index(@RequestParam("name") String name,
 			@RequestParam("ken") String ken,
 			@RequestParam("date") LocalDate date,
