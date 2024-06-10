@@ -14,6 +14,12 @@
 
 	<h2>宿情報画面</h2>
 	<a href="">宿新規追加</a>
+	
+	<form action="/admin/customer/result" method="get">
+		<input type="text" name="yadoname" th:value="${yadoname}" placeholder="宿名">
+		<input type="text" name="ken" th:value="${ken}" placeholder="所在地(県名)">
+		<button>検索</button>
+	</form>
 
 	<table border="1" align="center">
 		<tr>
@@ -26,12 +32,12 @@
 			<td th:text="${customer.hotelName}"></td>
 			<td th:text="${customer.address}"></td>
 			<td>
-				<form th:action="ここも決める" method="get">
+				<form th:action="'/admin/customer/'+${customer.id}+'/edit'" method="get">
 					<button>更新</button>
 				</form>
 			</td>
 			<td>
-				<form th:action="ここも決める" method="post">
+				<form th:action="'/admin/customer/'+${customer.id}+'/delete'" method="post">
 					<button>削除</button>
 				</form>
 			</td>
