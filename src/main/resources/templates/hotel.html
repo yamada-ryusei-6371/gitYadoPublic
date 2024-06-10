@@ -7,9 +7,7 @@
 </head>
 <body>
 	<header th:replace="User_header"></header>
-	
-<!--	検索-->
-	<form action="/" method="post">
+	<form action="/" method="get">
 <!--	都道府県-->
 		<select name="ken">
 			<option value="">選択してください</option>
@@ -62,28 +60,22 @@
 			<option value="沖縄県">沖縄県</option>
 		</select>
 <!--人数検索-->
-<!--<input type="number"  min="1" max="8">-->
-<!-- <input type="date">-->
 <!--キーワード検索-->
 		<input type="text" name="name" placeholder="宿名">
 		<button>検索</button>
-	</form>
-	
+	</form>	
 <!--宿一覧-->
-	<div class="flex">
-		<span th:each="customer:${cutomerList}">
+	<div th:each="customer:${cutomerList}" class="flex">
+		<a th:href="@{/hotel(id=${customer.id})}">
+			<figure class="image"><img th:src="@{'/image/' + ${customer.image} + '.jpg'}" ></figure>
+		</a>
+		<div class="right">
 			<a th:href="@{/hotel(id=${customer.id})}">
-				<figure class="image"><img th:src="@{'/image/' + ${customer.image} + '.jpg'}" ></figure>
-			</a>
-			<div class="right">
-				<a th:href="@{/hotel(id=${customer.id})}">
-					<b th:text="${customer.id}+':'"></b><b th:text="${costomer.hotelName}"></b>
-				</a><br>
-				<b th:text="'&yen;'+${costomer.price}" style="color: red;"></b><br>
-				<p th:text="${costomer.information}" class="text"></p>
-			</div>
-		</span>
-	</div>
-		
-	</body>
+				<b th:text="${customer.id}+':'"></b><b th:text="${costomer.hotelName}"></b>
+			</a><br>
+			<b th:text="'&yen;'+${costomer.price}" style="color: red;"></b><br>
+			<p th:text="${costomer.information}" class="text"></p>
+		</div>
+	</div>		
+</body>
 </html>
