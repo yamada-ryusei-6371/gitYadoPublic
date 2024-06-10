@@ -141,6 +141,33 @@ public class AdminController {
 		return "infoYado";
 	}
 
+	//新規顧客登録
+	@GetMapping("/admin/customer/add")
+	public String create(Model model) {
+//		List<Customer> customerList = customerRepository.findAll();
+//		model.addAttribute("customers", customerList);
+		
+		return "addYado";
+	}
+	
+	@PostMapping("/admin/customer/add")
+	public String customeradd(
+			@RequestParam(value = "hotelName", defaultValue = "") String hotelName,
+			@RequestParam(value = "price", defaultValue = "") Integer price,
+			@RequestParam(value = "address", defaultValue = "") String address,
+			@RequestParam(value = "hotelTel", defaultValue = "") String hotelTel,
+			@RequestParam(value = "information", defaultValue = "") String information,
+			@RequestParam(value = "hotelRoom", defaultValue = "") Integer hotelRoom,
+			@RequestParam(value = "image", defaultValue = "") String image,
+			Model model) {
+			
+		Customer customer = new Customer(hotelName, price, address, hotelTel, information, hotelRoom, image);
+		customerRepository.save(customer);
+		
+		return "redirect:/admin/customer";
+	}
+
+		
 	// 更新画面表示
 	@GetMapping("/admin/customer/{id}/edit")
 	public String edit(@PathVariable("id") Integer id, Model model) {
