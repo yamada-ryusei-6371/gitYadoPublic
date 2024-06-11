@@ -11,11 +11,11 @@
 
 	<header th:replace="User_header"></header>
 
-	<form action="/writeReviews" method="get">
+	<form th:action="@{/writeReviews/{id}(id=${hotelId})}" method="post">
 		<table>
 			<tr>
 				<th>アカウント名</th>
-<!--			<td th:text="${user.accountName}"></td>-->
+			<td th:text="${@account.accountName}"></td>
 			</tr>
 			<tr>
 				<th>評価</th>
@@ -38,12 +38,9 @@
 				<td><textarea name="evalue" cols="50" rows="12" required></textarea></td>
 			</tr>
 		</table>
-
+		<input type="hidden" name="accountName" th:value="${@account.accountName}">
 		<button>送信</button>
-
 	</form>
-
-
 </body>
 
 </html>

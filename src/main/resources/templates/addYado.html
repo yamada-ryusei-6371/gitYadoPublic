@@ -14,10 +14,15 @@
 	<h1>宿新規登録</h1>
 
 	<form action="/admin/customer/add" method="post">
+		<div th:if="${errorList}" class="error" style="color:red">
+			<span th:each="error:${errorList}" th:utext="${error}+'<br>'">
+			</span>
+		</div>
+		
 		<table border="1" align="center">
 
 			<tr>
-				<th>名前</th>
+				<th>宿名</th>
 				<td><input type="text" name="hotelName">
 				</td>
 			</tr>
@@ -27,12 +32,12 @@
 				</td>
 			</tr>
 			<tr>
-				<th>県</th>
+				<th>都道府県</th>
 				<td><input type="text" name="address1">
 				</td>
 			</tr>
 			<tr>
-				<th>市町村</th>
+				<th>市町区村</th>
 				<td><input type="text" name="address2">
 				</td>
 			</tr>
@@ -42,12 +47,12 @@
 				</td>
 			</tr>
 			<tr>
-				<th>Tel</th>
+				<th>電話番号</th>
 				<td><input type="text" name="hotelTel">
 				</td>
 			</tr>
 			<tr>
-				<th>宿情報</th>
+				<th>宿詳細情報</th>
 				<td><input type="text" name="information">
 				</td>
 			</tr>

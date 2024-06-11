@@ -13,8 +13,10 @@ public class Star {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "account_name")
+	private String accountName;
 	@Column(name = "user_id")
-	private Integer userId;
+	private String userId;
 	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private String evalue;
@@ -23,25 +25,27 @@ public class Star {
 	public Star() {
 	}
 
-	public Star(Integer id, Integer userId, Integer hotelId, String evalue, Integer star) {
+	public Star(Integer id, String accountName, Integer hotelId, String evalue, Integer star) {
 		this.id = id;
-		this.userId = userId;
+		this.accountName = accountName;
 		this.hotelId = hotelId;
 		this.evalue = evalue;
 		this.star = star;
 	}
 
-	public Star(Integer userId, Integer hotelId, String evalue, Integer star) {
-		this.userId = userId;
+	public Star(String accountName, Integer hotelId, String evalue, Integer star) {
+		this.accountName = accountName;
 		this.hotelId = hotelId;
 		this.evalue = evalue;
 		this.star = star;
 	}
-	
-	
-	public Star(Integer star,String evalue) {
-		this.star = star;
-		this.evalue = evalue;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public Integer getId() {
@@ -52,12 +56,12 @@ public class Star {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public Integer getHotelId() {

@@ -10,7 +10,8 @@
 <body>
 	<header th:replace="adminHeader"></header>
 	<h1>会員情報更新</h1>
-<<<<<<< HEAD
+
+	<<<<<<< HEAD
 	<form action="/mypage" method="post">
 		<p>
 			名前：<input type="text" name="name" th:value="${user.name}">
@@ -61,7 +62,7 @@
 			<tr>
 				<th>生年月日</th>
 				<td>
-					<select name="year">
+					<select name="year" th:value="${user.year}">
 						<option value="1900">1900</option>
 						<option value="1901">1901</option>
 						<option value="1902">1902</option>
@@ -132,7 +133,7 @@
 						<option value="1967">1967</option>
 						<option value="1968">1968</option>
 						<option value="1969">1969</option>
-						<option value="1970" selected>1970</option>
+						<option value="1970">1970</option>
 						<option value="1971">1971</option>
 						<option value="1972">1972</option>
 						<option value="1973">1973</option>
@@ -190,7 +191,7 @@
 					</select> 年
 
 					<select name="month">
-						<option value="1" selected>1</option>
+						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
 						<option value="4">4</option>
@@ -205,7 +206,7 @@
 					</select> 月
 
 					<select name="day">
-						<option value="1" selected>1</option>
+						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
 						<option value="4">4</option>
@@ -275,7 +276,6 @@
 	</form>
 
 	<footer th:replace="adminFooter"></footer>
->>>>>>> branch 'develop' of https://github.com/yamada-ryusei-6371/gitYadoPublic.git
 </body>
 
 </html>

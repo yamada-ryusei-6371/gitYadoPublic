@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS stars;
 DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS coupons;
 DROP TABLE IF EXISTS zerorooms;
+DROP TABLE IF EXISTS inquiry;
 -- 会員テーブル
 CREATE TABLE users
 (
@@ -68,7 +69,7 @@ CREATE TABLE reservations
    -- チェックイン
    checkIn INTEGER,
    -- 予約人数
-   human INTEGER
+   human INTEGER,
       -- 宿名
    hotel_name TEXT,
       -- ホテル画像
@@ -84,6 +85,8 @@ CREATE TABLE stars
    user_id INTEGER,
    -- 顧客ID
    hotel_id INTEGER,
+   -- アカウント名
+   account_name TEXT,
    -- 口コミ
    evalue TEXT,
    -- 口コミ評価

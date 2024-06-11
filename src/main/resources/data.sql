@@ -238,8 +238,8 @@ VALUES
 -- reservations テーブルにデータを挿入するクエリ
 INSERT INTO reservations (user_id, hotel_id, price, hotel_day, checkIn, human)
 VALUES
-(1, 1, 40000, '2024-11-30', '2024-11-30 10:00',1),
-(2, 4, 10000, '2025-12-30', '2025-12-30 13:00',2);
+(1, 1, 40000, '2024-11-30', '11',1),
+(2, 4, 10000, '2025-12-30', '12',2);
 
 -- stars テーブルにデータを挿入するクエリ
 INSERT INTO stars (user_id, hotel_id, evalue, star)

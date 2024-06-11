@@ -121,17 +121,16 @@ public class AdminController {
 		// 「/items」にGETでリクエストし直せ（リダイレクト）
 		return "redirect:/admin/user";
 	}
-	
+
 	// 削除処理
-		@PostMapping("/admin/user/{id}/delete")
-		public String userdelete(@PathVariable("id") Integer id, Model model) {
+	@PostMapping("/admin/user/{id}/delete")
+	public String userdelete(@PathVariable("id") Integer id, Model model) {
 
-			// itemsテーブルから削除（DELETE）
-			userRepository.deleteById(id);
-			// 「/items」にGETでリクエストし直せ（リダイレクト）
-			return "redirect:/admin/user";
-		}
-
+		// itemsテーブルから削除（DELETE）
+		userRepository.deleteById(id);
+		// 「/items」にGETでリクエストし直せ（リダイレクト）
+		return "redirect:/admin/user";
+	}
 
 	//宿機能
 	@GetMapping("/admin/customer")
@@ -191,14 +190,62 @@ public class AdminController {
 	public String customeradd(
 			@RequestParam(value = "hotelName", defaultValue = "") String hotelName,
 			@RequestParam(value = "price", defaultValue = "") Integer price,
-			@RequestParam(value = "address", defaultValue = "") String address1,
-			@RequestParam(value = "address", defaultValue = "") String address2,
-			@RequestParam(value = "address", defaultValue = "") String address3,
+			@RequestParam(value = "address1", defaultValue = "") String address1,
+			@RequestParam(value = "address2", defaultValue = "") String address2,
+			@RequestParam(value = "address3", defaultValue = "") String address3,
 			@RequestParam(value = "hotelTel", defaultValue = "") String hotelTel,
 			@RequestParam(value = "information", defaultValue = "") String information,
 			@RequestParam(value = "hotelRoom", defaultValue = "") Integer hotelRoom,
 			@RequestParam(value = "image", defaultValue = "") String image,
 			Model model) {
+
+		List<String> errorList = new ArrayList<>();
+		if (hotelName.length() == 0) {
+			errorList.add("・宿名は必須項目です");
+		}
+		if (price == null) {
+			errorList.add("・価格は必須項目です");
+		}
+		if (address1.length() == 0) {
+			errorList.add("・都道府県は必須項目です");
+		}
+		if (address2.length() == 0) {
+			errorList.add("・市町区村は必須項目です");
+		}
+		if (address3.length() == 0) {
+			errorList.add("・番地以降は必須項目です");
+		}
+		if (hotelTel.length() == 0) {
+			errorList.add("・電話番号は必須項目です");
+		}
+		if (information.length() == 0) {
+			errorList.add("・宿詳細情報は必須項目です");
+		}
+		if (hotelRoom == null) {
+			errorList.add("・総部屋数は必須項目です");
+		}
+		if (image.length() == 0) {
+			errorList.add("・参考画像は必須項目です");
+		}
+
+		List<Customer> customerList = customerRepository.findByHotelTel(hotelTel);
+		if (customerList != null && customerList.size() > 0) {
+			errorList.add("・登録済みの宿です");
+		}
+
+		if (errorList.size() > 0) {
+			model.addAttribute("errorList", errorList);
+			model.addAttribute("hotelName", hotelName);
+			model.addAttribute("price", price);
+			model.addAttribute("address", address1);
+			model.addAttribute("address", address2);
+			model.addAttribute("address", address3);
+			model.addAttribute("hotelTel", hotelTel);
+			model.addAttribute("information", information);
+			model.addAttribute("hotelRoom", hotelRoom);
+			model.addAttribute("image", image);
+			return "addYado";
+		}
 
 		Customer customer = new Customer(hotelName, price, address1 + address2 + address3, hotelTel, information,
 				hotelRoom, image + ".jpg");
@@ -230,11 +277,9 @@ public class AdminController {
 			@RequestParam(value = "image", defaultValue = "") String image,
 			Model model) {
 
-		// Itemオブジェクトの生成
 		Customer customer = new Customer(id, hotelName, price, address, hotelTel, information, hotelRoom, image);
-		// itemsテーブルへの反映（UPDATE）
 		customerRepository.save(customer);
-		// 「/items」にGETでリクエストし直せ（リダイレクト）
+
 		return "redirect:/admin/customer";
 	}
 

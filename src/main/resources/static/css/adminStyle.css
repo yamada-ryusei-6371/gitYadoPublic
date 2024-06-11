@@ -1,5 +1,6 @@
 body {
 	background-color: white;
+	text-align: center;
 }
 
 html {
@@ -11,9 +12,20 @@ h2 {
 	text-align: center;
 }
 
-body {
-	text-align: center;
+header{
+	background-color: azure;
+	width: 100%;
+	padding: 30px 0;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+header h1{
+	font-family: 'Itim', cursive;
+}
+
+
+
+
 /*モーダル
 .modal {
 	display: none;

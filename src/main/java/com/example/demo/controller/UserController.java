@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Reservation;
+import com.example.demo.entity.Star;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.InquiryRepository;
 import com.example.demo.repository.ReservationRepository;
+import com.example.demo.repository.StarRepository;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -36,6 +38,9 @@ public class UserController {
 
 	@Autowired
 	InquiryRepository inquiryRepository;
+
+	@Autowired
+	StarRepository starRepository;
 
 	@Autowired
 	Account account;
@@ -232,6 +237,47 @@ public class UserController {
 		inquiryRepository.save(inquiry);
 
 		return "finChangeRepository";
+	}
+
+	//レビュー画面表示
+	@GetMapping("/reviews/{id}")
+	public String review(
+			@PathVariable("id") Integer hotelId,
+			Model model) {
+
+		List<Star> StarList = starRepository.findByHotelId(hotelId);
+		Customer customer = customerRepository.findById(hotelId).get();
+		if (StarList.size() == 0) {
+			model.addAttribute("message", "レビューがありません");
+			return "reviews";
+		}
+		model.addAttribute("customer", customer);
+		model.addAttribute("starList", StarList);
+		return "reviews";
+	}
+
+	//レビュー書き込み画面表示
+	@GetMapping("/writeReviews/{id}")
+	public String writeReview(
+			@PathVariable("id") Integer hotelId, Model model) {
+
+		model.addAttribute("hotelId", hotelId);
+		return "writeReviews";
+	}
+
+	//レビュー書き込み
+	@PostMapping("/writeReviews/{id}")
+	public String writeReviews(
+			@PathVariable("id") Integer hotelId,
+			@RequestParam(value = "accountName") String accountName,
+			@RequestParam(value = "star") Integer star,
+			@RequestParam(value = "evalue") String evalue,
+			Model model) {
+
+		Star review = new Star(accountName, hotelId, evalue, star);
+		starRepository.save(review);
+
+		return "redirect:reviews";
 	}
 
 	//	@PostMapping("/reserve/content/{id}")

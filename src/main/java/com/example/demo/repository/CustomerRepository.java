@@ -10,4 +10,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	List<Customer> findAllByOrderById();
 
+	List<Customer> findByHotelTel(String hotelTel);
+
 }

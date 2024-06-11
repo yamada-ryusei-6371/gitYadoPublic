@@ -14,40 +14,29 @@
 		<tr>
 			<th>宿名</th>
 			<th>価格</th>
-			<!--		<th>日付</th>-->
-			<!--		<th>人数</th>-->
 		</tr>
-		<tr th:each="customer:${customer}">
+		<tr>
 			<td th:text="${customer.hotelName}"></td>
 			<td th:text="${customer.price}"></td>
-			<!--		<td th:text="${}"></td>-->
-			<!--		<td th:text="${}"></td>	-->
 		</tr>
 	</table>
-
-	<a href="/writeReviews">クチコミを投稿する</a>
-
+	<a th:href="@{/writeReviews(id=${customer.id})}">クチコミを投稿する</a>
 
 	<!-- レビュー -->
-	<span th:if="${StarList} != 0">
+	<span th:if="${StarList}">
 		<table border="1">
 			<tr>
 				<th>アカウント名</th>
-				<td th:text="${user.accountName}"></td>
-			</tr>
-			<tr>
 				<th>評価</th>
-				<td th:text="${star.star}"></td>
-			</tr>
-			<tr>
 				<th>内容</th>
+			</tr>
+			<tr th:each="star:${starList}">
+				<td th:text="${star.accountName}"></td>
+				<td th:text="${star.star}"></td>
 				<td th:text="${star.evalue}">
 			</tr>
 		</table>
 	</span>
-	
-	<p th:text="${message}"></p>
-
+	<p th:if="${message}" th:text="${message}"></p>
 </body>
-
 </html>
