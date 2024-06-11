@@ -40,24 +40,77 @@ public class UserController {
 	@Autowired
 	Account account;
 
+	//	@GetMapping("/userTop")
+	//	public String userTop(
+	//			@RequestParam("id") Integer id,
+	//			@RequestParam("name") String name,
+	//			@RequestParam("year") String year,
+	//			@RequestParam("month") String month,
+	//			@RequestParam("day") String day,
+	//			@RequestParam("address") String address,
+	//			@RequestParam("mail") String mail,
+	//			@RequestParam("tel") String tel,
+	//			@RequestParam("password") String password,
+	//			@RequestParam("point") Integer point,
+	//			@RequestParam("accountName") String accountName,
+	//			Model model) {
+	//		User user = userRepository.findById(1).get();
+	//		model.addAttribute("user", user);
+	//		return "myPage";
+	//	}
+
 	@GetMapping("/userTop")
-	public String userTop(
-			@RequestParam("id") Integer id,
-			@RequestParam("name") String name,
-			@RequestParam("year") String year,
-			@RequestParam("month") String month,
-			@RequestParam("day") String day,
-			@RequestParam("address") String address,
-			@RequestParam("mail") String mail,
-			@RequestParam("tel") String tel,
-			@RequestParam("password") String password,
-			@RequestParam("point") Integer point,
-			@RequestParam("accountName") String accountName,
+	public String index(@RequestParam("name") String name,
+			@RequestParam("ken") String ken,
+			@RequestParam("date") LocalDate date,
+			@RequestParam("people") Integer people,
 			Model model) {
-		User user = userRepository.findById(1).get();
-		model.addAttribute("user", user);
-		return "myPage";
+
+		List<Customer> customerList1 = customerRepository.findAll();
+		List<Customer> customerList2 = new ArrayList<Customer>();
+		if (!name.equals("") && !ken.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getHotelName().contains(name)) {
+					if (customer.getAddress().contains(ken)) {
+						customerList2.add(customer);
+					}
+				}
+			}
+		} else if (!name.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getHotelName().contains(name)) {
+					customerList2.add(customer);
+				}
+			}
+		} else if (!ken.equals("")) {
+			for (Customer customer : customerList1) {
+				if (customer.getAddress().contains(ken)) {
+					customerList2.add(customer);
+				}
+			}
+		}
+		if (customerList2.size() == 0) {
+			if (!name.equals("") || !ken.equals("")) {
+
+			}
+			customerList2 = customerRepository.findAll();
+		}
+
+		model.addAttribute("customerList", customerList2);
+
+		return "hotel";
 	}
+
+	@GetMapping("/hotel")
+	public String hotel(@RequestParam("id") Integer id,
+			Model model) {
+		Customer customer = customerRepository.findById(id).get();
+		model.addAttribute("customer", customer);
+
+		return "hotelDetail";
+	}
+
+	//マイページ
 
 	@GetMapping("/updateUser")
 	public String updateUser(Model model) {
@@ -88,11 +141,6 @@ public class UserController {
 		return "updateUserComplete";
 	}
 
-	@GetMapping("/history")
-	public String history() {
-		return "history";
-	}
-
 	@GetMapping("/deleteUser")
 	public String deleteUser(Model model) {
 		//		User user = userRepository.findById(account.getId()).get();
@@ -107,6 +155,13 @@ public class UserController {
 			@RequestParam("taikai") String taikai,
 			Model model) {
 		return "deleteUserComplete";
+	}
+
+	//マイページここまで
+
+	@GetMapping("/history")
+	public String history() {
+		return "history";
 	}
 
 	@GetMapping("/history/{id}")
@@ -177,57 +232,6 @@ public class UserController {
 		inquiryRepository.save(inquiry);
 
 		return "finChangeRepository";
-	}
-
-	@GetMapping("/userTop")
-	public String index(@RequestParam("name") String name,
-			@RequestParam("ken") String ken,
-			@RequestParam("date") LocalDate date,
-			@RequestParam("people") Integer people,
-			Model model) {
-
-		List<Customer> customerList1 = customerRepository.findAll();
-		List<Customer> customerList2 = new ArrayList<Customer>();
-		if (!name.equals("") && !ken.equals("")) {
-			for (Customer customer : customerList1) {
-				if (customer.getHotelName().contains(name)) {
-					if (customer.getAddress().contains(ken)) {
-						customerList2.add(customer);
-					}
-				}
-			}
-		} else if (!name.equals("")) {
-			for (Customer customer : customerList1) {
-				if (customer.getHotelName().contains(name)) {
-					customerList2.add(customer);
-				}
-			}
-		} else if (!ken.equals("")) {
-			for (Customer customer : customerList1) {
-				if (customer.getAddress().contains(ken)) {
-					customerList2.add(customer);
-				}
-			}
-		}
-		if (customerList2.size() == 0) {
-			if (!name.equals("") || !ken.equals("")) {
-
-			}
-			customerList2 = customerRepository.findAll();
-		}
-
-		model.addAttribute("customerList", customerList2);
-
-		return "hotel";
-	}
-
-	@GetMapping("/hotel")
-	public String hotel(@RequestParam("id") Integer id,
-			Model model) {
-		Customer customer = customerRepository.findById(id).get();
-		model.addAttribute("customer", customer);
-
-		return "hotelDetail";
 	}
 
 	//	@PostMapping("/reserve/content/{id}")
