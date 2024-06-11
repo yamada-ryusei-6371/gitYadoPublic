@@ -213,6 +213,7 @@ public class UserController {
 			@RequestParam("human") int human,
 			@RequestParam("date") LocalDate date,
 			@RequestParam("hour") int hour,
+<<<<<<< HEAD
 			Model model) {
 		String Application1 = "";
 		String Application2 = "";
@@ -226,6 +227,34 @@ public class UserController {
 		if (history.getCheckIn() != hour) {
 			Application3 = "チェックイン時間を" + hour + "に更新する申請が来ました。<br>";
 		}
+=======
+			 Model model) {
+		 String Application1 = "";
+		 String Application2 = "";
+		 String Application3 = "";
+		 if(history.getHuman() != human)
+			 Application1 = "人数を"+ human + "人に更新する申請が来ました。<br>";
+		 if(!(history.getHotelDay().isEqual(date)))
+			 Application2 = "日付を" + date + "に更新する申請が来ました。<br>"; 
+		 if(history.getCheckIn() != hour)
+			 Application3 = "チェックイン時間を" + hour + "に更新する申請が来ました。<br>"; 
+		 String Application = "Application1" + "Application2" + "Application3";
+		 
+		 
+		 Inquiry inquiry = new Inquiry(Application,history.getId());
+		 
+		 inquiryRepository.save(inquiry);
+		 
+		 return "finChangeReserve";
+	 }
+	
+	//@GetMapping("/userTop")
+	//public String index(@RequestParam("name") String name,
+			//@RequestParam("ken") String ken,
+			//@RequestParam("date") LocalDate date,
+			//@RequestParam("people") Integer people,
+			//Model model) {
+>>>>>>> 53ca32659ebf60a25a64d894c2f60208f600cde8
 
 		String Application = "Application1" + "Application2" + "Application3";
 		Inquiry inquiry = new Inquiry(Application, history.getId());
