@@ -10,6 +10,39 @@
 <body>
 	<header th:replace="adminHeader"></header>
 	<h1>会員情報更新</h1>
+<<<<<<< HEAD
+	<form action="/mypage" method="post">
+		<p>
+			名前：<input type="text" name="name" th:value="${user.name}">
+		</p>
+		<p>
+			生年月日
+			<br>
+			年：<input type="text" name="year" th:value="${user.year}">
+			<br>
+			月：<input type="text" name="month" th:value="${user.month}">
+			<br>
+			日：<input type="text" name="day" th:value="${user.day}">
+		</p>
+		<p>
+			住所：<input type="text" name="address" th:value="${user.address}">
+		</p>
+		<p>
+			メールアドレス：<input type="text" name="mail" th:value="${user.mail}">
+		</p>
+		<p>
+			電話番号：<input type="text" name="tel" th:value="${user.tel}">
+		</p>
+		<input type="hidden" name="id" th:value="${user.id}">
+		<input type="hidden" name="accountName" th:value="${user.accountName}">
+		<input type="hidden" name="point" th:value="${user.point}">
+		<input type="hidden" name="password" th:value="${user.password}">
+		<input type="hidden" name="password" th:value="${user.accountName}">
+		<button>更新</button>
+	</form>	
+<a href="/userTop">戻る</a>
+<footer th:replace="adminFooter"></footer>
+=======
 
 	<form th:action="'/admin/user/'+${user.id}+'/edit'" method="post">
 
@@ -242,6 +275,7 @@
 	</form>
 
 	<footer th:replace="adminFooter"></footer>
+>>>>>>> branch 'develop' of https://github.com/yamada-ryusei-6371/gitYadoPublic.git
 </body>
 
 </html>

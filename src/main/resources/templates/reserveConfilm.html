@@ -5,17 +5,9 @@
 <title>予約確定</title>
 </head>
 <body>
-<table border="1">
 	<header th:replace="User_header"></header>
 	
-	<tr>
-		<th>名前</th>
-		<th>値段</th>
-	</tr>
-		<td th:text="${customer.name}"></td>
-		<td th:text="${customer.price}"></td>
-	</tr>
-</table>
+		<span th:replace="reserve"></span>
 
 <h1>予約を確定します</h1>
 <form>
