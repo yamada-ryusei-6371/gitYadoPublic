@@ -16,7 +16,7 @@ public class Star {
 	@Column(name = "account_name")
 	private String accountName;
 	@Column(name = "user_id")
-	private String userId;
+	private Integer userId;
 	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private String evalue;
@@ -25,26 +25,28 @@ public class Star {
 	public Star() {
 	}
 
-	public Star(Integer id, String accountName, Integer hotelId, String evalue, Integer star) {
+	public Star(Integer id, String accountName, Integer userId, Integer hotelId, String evalue, Integer star) {
 		this.id = id;
 		this.accountName = accountName;
+		this.userId = userId;
 		this.hotelId = hotelId;
 		this.evalue = evalue;
 		this.star = star;
 	}
 
-	public Star(String accountName, Integer hotelId, String evalue, Integer star) {
+	public Star(String accountName, Integer userId, Integer hotelId, String evalue, Integer star) {
 		this.accountName = accountName;
+		this.userId = userId;
 		this.hotelId = hotelId;
 		this.evalue = evalue;
 		this.star = star;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

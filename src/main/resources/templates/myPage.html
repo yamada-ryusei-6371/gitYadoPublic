@@ -9,11 +9,11 @@
 <p>現在登録されている情報</p>
 
 
-<a href="/updateUser">情報更新</a>
+<a th:href="@{/updateUser/{id}(id=${@account.id})}">情報更新</a>
 <br>
-<a href="/history">宿予約履歴</a>
+<a th:href="@{/history/{id}(id=${@account.id})}">宿予約履歴</a>
 <br>
-<a href="/deleteUser">退会</a>
+<a th:href="@{/deleteUser/{id}(id=${@account.id})}">退会</a>
 <br>
 	<button>戻る</button>
 </body>

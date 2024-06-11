@@ -5,6 +5,7 @@
 	<a href="/user/login"  th:if="${@account.id == null}">	ログイン</a>
 	
 	<!--ログイン時-->
-	<a href="/mypage"  th:if="${@account.id}">会員サービス</a>
+	<span th:text="${@account.accountName}+' さんがログイン中'" th:if="${@account.id}"></span><br>
+	<a th:href="@{/mypage/{id}(id=${@account.id})}" th:if="${@account.id}">マイページ</a>
 	<a href="/user/logout"  th:if="${@account.id}">ログアウト</a>		
 </head>

@@ -4,14 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>クチコミ書き込み</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/userStyle.css">
 </head>
-
 <body>
-
 	<header th:replace="User_header"></header>
-
-	<form th:action="@{/writeReviews/{id}(id=${hotelId})}" method="post">
+	<form action="/writeReviews" method="post">
 		<table>
 			<tr>
 				<th>アカウント名</th>
@@ -39,6 +36,8 @@
 			</tr>
 		</table>
 		<input type="hidden" name="accountName" th:value="${@account.accountName}">
+		[[${hotelId}]]
+		<input type="hidden" name="id" th:value="${hotelId}">
 		<button>送信</button>
 	</form>
 </body>

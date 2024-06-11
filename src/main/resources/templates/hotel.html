@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>宿一覧画面</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/userStyle.css">
 </head>
 <body>
 	<header th:replace="User_header"></header>
-	<form action="/" method="get">
+	<form action="/userTop" method="get">
 <!--	都道府県-->
 		<select name="ken">
 			<option value="">選択してください</option>
@@ -65,16 +65,16 @@
 		<button>検索</button>
 	</form>	
 <!--宿一覧-->
-	<div th:each="customer:${cutomerList}" class="flex">
+	<div th:each="customer:${customerList}" class="flex">
 		<a th:href="@{/hotel(id=${customer.id})}">
-			<figure class="image"><img th:src="@{'/image/' + ${customer.image} + '.jpg'}" ></figure>
+			<figure class="image"><img th:src="@{'/image/' + ${customer.image}}" ></figure>
 		</a>
 		<div class="right">
 			<a th:href="@{/hotel(id=${customer.id})}">
-				<b th:text="${customer.id}+':'"></b><b th:text="${costomer.hotelName}"></b>
+				<b th:text="${customer.id}+':'"></b><b th:text="${customer.hotelName}"></b>
 			</a><br>
-			<b th:text="'&yen;'+${costomer.price}" style="color: red;"></b><br>
-			<p th:text="${costomer.information}" class="text"></p>
+			<b th:text="'&yen;'+${customer.price}" style="color: red;"></b><br>
+			<p th:text="${customer.information}" class="text"></p>
 		</div>
 	</div>		
 </body>

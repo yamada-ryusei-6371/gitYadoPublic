@@ -242,9 +242,9 @@ VALUES
 (2, 4, 10000, '2025-12-30', '12',2);
 
 -- stars テーブルにデータを挿入するクエリ
-INSERT INTO stars (user_id, hotel_id, evalue, star)
+INSERT INTO stars (user_id, hotel_id, account_name, evalue, star)
 VALUES
-(1, 1, '素晴らしいホテルでした',5);
+(1, 1, 'ゴンタ', '素晴らしいホテルでした',5);
 
 -- favorites テーブルにデータを挿入するクエリ
 INSERT INTO favorites (user_id, hotel_id)

@@ -65,10 +65,10 @@ public class UserController {
 	//	}
 
 	@GetMapping("/userTop")
-	public String index(@RequestParam("name") String name,
-			@RequestParam("ken") String ken,
-			@RequestParam("date") LocalDate date,
-			@RequestParam("people") Integer people,
+	public String index(@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "ken", defaultValue = "") String ken,
+			@RequestParam(name = "date", defaultValue = "") LocalDate date,
+			@RequestParam(name = "people", defaultValue = "") Integer people,
 			Model model) {
 
 		List<Customer> customerList1 = customerRepository.findAll();
@@ -95,9 +95,6 @@ public class UserController {
 			}
 		}
 		if (customerList2.size() == 0) {
-			if (!name.equals("") || !ken.equals("")) {
-
-			}
 			customerList2 = customerRepository.findAll();
 		}
 
@@ -116,18 +113,24 @@ public class UserController {
 	}
 
 	//マイページ
+	@GetMapping("/mypage/{id}")
+	public String editId(@PathVariable("id") Integer id, Model model) {
+		User user = userRepository.findById(id).get();
+		model.addAttribute("user", user);
 
-	@GetMapping("/updateUser")
-	public String updateUser(Model model) {
-		//		User user = userRepository.findById(account.getId()).get();
-		User user = userRepository.findById(1).get();
+		return "myPage";
+	}
+
+	@GetMapping("/updateUser/{id}")
+	public String updateUser(@PathVariable("id") Integer id, Model model) {
+		User user = userRepository.findById(id).get();
 		model.addAttribute("user", user);
 		return "updateUser";
 	}
 
-	@PostMapping("/mypage")
-	public String updateUser(
-			@RequestParam("id") Integer id,
+	@GetMapping("/finUpdateUser/{id}")
+	public String userTop(
+			@PathVariable("id") Integer id,
 			@RequestParam("name") String name,
 			@RequestParam("year") String year,
 			@RequestParam("month") String month,
@@ -140,16 +143,85 @@ public class UserController {
 			@RequestParam("accountName") String accountName,
 			Model model) {
 
-		User user = new User(id, name, year, month, day, address, mail, tel,
-				password, accountName, point);
-		userRepository.save(user);
-		return "updateUserComplete";
+		User original = userRepository.findOneById(id);
+
+		ArrayList<String> errorlist = new ArrayList<String>();
+
+		if (name.equals("") || name.length() == 0) {
+			errorlist.add("名前は必須です<br>");
+		}
+		if (year.equals("") || month.equals("") || day.equals("")) {
+			errorlist.add("生年月日は必須です<br>");
+		}
+		if (address.equals("") || address.length() == 0) {
+			errorlist.add("住所は必須です<br>");
+		}
+		if (mail.equals("") || mail.length() == 0) {
+			errorlist.add("メールアドレスは必須です<br>");
+		}
+		if (tel.equals("") || tel.length() == 0) {
+			errorlist.add("電話番号は必須です<br>");
+		}
+		if (accountName.equals("") || accountName.length() == 0) {
+			errorlist.add("アカウント名は必須です<br>");
+		}
+		if (password.equals("")) {
+			errorlist.add("パスワードは必須です<br>");
+		}
+
+		List<User> userList = userRepository.findAll();
+
+		for (User users : userList) {
+			// 対象の商品IDが見つかった場合削除す
+			if (users.getMail().equals(mail)) {
+				if (users.getId() != id) {
+					errorlist.add("そのメールアドレスは使用済みです<br>");
+					break;
+				}
+			}
+		}
+
+		for (User users : userList) {
+			// 対象の商品IDが見つかった場合削除す
+			if (users.getTel().equals(tel)) {
+				if (users.getId() != id) {
+					errorlist.add("その電話番号は使用済みです<br>");
+					break;
+				}
+			}
+		}
+		for (User users : userList) {
+			// 対象の商品IDが見つかった場合削除す
+			if (users.getAccountName().equals(accountName)) {
+				if (users.getId() != id) {
+					errorlist.add("そのアカウント名は使用済みです<br>");
+					break;
+				}
+			}
+		}
+		for (User users : userList) {
+			// 対象の商品IDが見つかった場合削除す
+			if (users.getPassword().equals(password)) {
+				if (users.getId() != id) {
+					errorlist.add("そのパスワードは使用済みです<br>");
+					break;
+				}
+			}
+		}
+		if (errorlist.size() == 0) {
+			User user = new User(name, year, month, day, address, mail, tel, password, accountName);
+			userRepository.save(user);
+			return "updateUserComplete";
+		} else {
+			model.addAttribute("errorlist", errorlist);
+			model.addAttribute("user", original);
+			return "updateUser";
+		}
 	}
 
-	@GetMapping("/deleteUser")
-	public String deleteUser(Model model) {
-		//		User user = userRepository.findById(account.getId()).get();
-		User user = userRepository.findById(1).get();
+	@GetMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable("id") Integer id, Model model) {
+		User user = userRepository.findById(id).get();
 		model.addAttribute("user", user);
 		return "deleteUser";
 	}
@@ -157,11 +229,10 @@ public class UserController {
 	@PostMapping("/deleteComplete")
 	public String deleteComplete(
 			@RequestParam("id") Integer id,
-			@RequestParam("taikai") String taikai,
 			Model model) {
+		userRepository.deleteById(id);
 		return "deleteUserComplete";
 	}
-
 	//マイページここまで
 
 	@GetMapping("/history")
@@ -233,51 +304,52 @@ public class UserController {
 		}
 
 		String Application = "Application1" + "Application2" + "Application3";
-		Inquiry inquiry = new Inquiry(Application, history.getId());
+		Inquiry inquiry = new Inquiry(Application, history.getId(), date, hour, human);
 		inquiryRepository.save(inquiry);
 
 		return "finChangeRepository";
 	}
 
 	//レビュー画面表示
-	@GetMapping("/reviews/{id}")
+	@GetMapping("/reviews")
 	public String review(
-			@PathVariable("id") Integer hotelId,
+			@RequestParam("id") Integer hotelId,
 			Model model) {
 
 		List<Star> StarList = starRepository.findByHotelId(hotelId);
 		Customer customer = customerRepository.findById(hotelId).get();
+
+		model.addAttribute("customer", customer);
 		if (StarList.size() == 0) {
 			model.addAttribute("message", "レビューがありません");
 			return "reviews";
 		}
-		model.addAttribute("customer", customer);
 		model.addAttribute("starList", StarList);
 		return "reviews";
 	}
 
 	//レビュー書き込み画面表示
-	@GetMapping("/writeReviews/{id}")
+	@GetMapping("/writeReviews")
 	public String writeReview(
-			@PathVariable("id") Integer hotelId, Model model) {
+			@RequestParam("id") Integer hotelId, Model model) {
 
 		model.addAttribute("hotelId", hotelId);
 		return "writeReviews";
 	}
 
 	//レビュー書き込み
-	@PostMapping("/writeReviews/{id}")
+	@PostMapping("/writeReviews")
 	public String writeReviews(
-			@PathVariable("id") Integer hotelId,
-			@RequestParam(value = "accountName") String accountName,
-			@RequestParam(value = "star") Integer star,
-			@RequestParam(value = "evalue") String evalue,
+			@RequestParam("id") Integer hotelId,
+			@RequestParam("accountName") String accountName,
+			@RequestParam("star") Integer star,
+			@RequestParam("evalue") String evalue,
 			Model model) {
 
-		Star review = new Star(accountName, hotelId, evalue, star);
+		Star review = new Star(accountName, account.getId(), hotelId, evalue, star);
 		starRepository.save(review);
 
-		return "redirect:reviews";
+		return "redirect:/reviews?id=" + hotelId;
 	}
 
 	//	@PostMapping("/reserve/content/{id}")

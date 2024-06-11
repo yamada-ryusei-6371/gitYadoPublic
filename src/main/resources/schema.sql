@@ -136,5 +136,11 @@ CREATE TABLE inquiry
    --お問い合わせ内容
    contents TEXT,
    --宿予約ID
-   reserve_id INTEGER
+   reserve_id INTEGER,
+        -- 宿泊日時
+   hotel_day DATE,
+   -- チェックイン
+   checkIn INTEGER,
+   -- 予約人数
+   human INTEGER
   ); 
