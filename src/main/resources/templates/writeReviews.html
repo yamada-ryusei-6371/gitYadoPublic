@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>クチコミ書き込み</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+
+	<header th:replace="User_header"></header>
+
+	<form action="/writeReviews" method="get">
+		<table>
+			<tr>
+				<th>アカウント名</th>
+<!--			<td th:text="${user.accountName}"></td>-->
+			</tr>
+			<tr>
+				<th>評価</th>
+				<td>
+					<div class="review">
+						<div class="stars">
+							<span>
+								<input id="review01" value="1" type="radio" name="star"><label for="review01">★</label>
+								<input id="review02" value="2" type="radio" name="star"><label for="review02">★</label>
+								<input id="review03" value="3" type="radio" name="star"><label for="review03">★</label>
+								<input id="review04" value="4" type="radio" name="star"><label for="review04">★</label>
+								<input id="review05" value="5" type="radio" name="star"><label for="review05">★</label>
+							</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>内容</th>
+				<td><textarea name="evalue" cols="50" rows="12" required></textarea></td>
+			</tr>
+		</table>
+
+		<button>送信</button>
+
+	</form>
+
+
+</body>
+
+</html>

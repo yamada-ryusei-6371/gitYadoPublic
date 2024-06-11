@@ -4,16 +4,50 @@
 <head>
 	<meta charset="UTF-8">
 	<title>会員管理画面</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
+
 </head>
 
 <body>
-	<h1>会員管理画面</h1>
+	<header th:replace="adminHeader"></header>
 
-	<p><a href>会員検索</a></p>
-	<p><a href>会員情報更新</a></p>
-	<p><a href>会員退会</a></p>
+	<h2>会員管理画面</h2>
 
-	<p><a href>戻る</a></p>
+	<form action="/admin/user/result" method="get">
+		<input type="text" name="name" th:value="${name}" placeholder="氏名">
+		<input type="text" name="account" th:value="${account}" placeholder="ニックネーム">
+		<input type="text" name="email" th:value="${email}" placeholder="メールアドレス">
+		<button>検索</button>
+	</form>
+	<br>
+	<table border="1" align="center">
+		<tr>
+			<th>氏名</th>
+			<th>ニックネーム</th>
+			<th>メールアドレス</th>
+			<th>情報更新</th>
+			<th>情報削除</th>
+		</tr>
+
+		<tr th:each="user:${userList}">
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.accountName}"></td>
+			<td th:text="${user.mail}"></td>
+			<td>
+				<form th:action="'/admin/user/'+${user.id}+'/edit'" method="get">
+					<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="'/admin/user/'+${user.id}+'/delete'" method="post">
+					<button>削除</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<footer th:replace="adminFooter"></footer>
+
 
 </body>
 

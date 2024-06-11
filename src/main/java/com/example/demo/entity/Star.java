@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,9 @@ public class Star {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "user_id")
 	private Integer userId;
+	@Column(name = "hotel_id")
 	private Integer hotelId;
 	private String evalue;
 	private Integer star;
@@ -33,6 +36,12 @@ public class Star {
 		this.hotelId = hotelId;
 		this.evalue = evalue;
 		this.star = star;
+	}
+	
+	
+	public Star(Integer star,String evalue) {
+		this.star = star;
+		this.evalue = evalue;
 	}
 
 	public Integer getId() {

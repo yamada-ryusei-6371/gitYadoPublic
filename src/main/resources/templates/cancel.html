@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>予約キャンセル</title>
+</head>
+<body>
+	
+	<header th:replace="User_header"></header>
+	
+
+	<span th:replace="reserve"></span>
+
+<h1 style="color: red;">予約をキャンセルします</h1>
+
+<form action="/cancel/fin">
+	<button>キャンセル</button>
+</form>
+<form action="/history">
+	<input type="hidden" name="id" th:value="${@account.id}">
+	<button>戻る</button>
+</form>
+</body>
+</html>

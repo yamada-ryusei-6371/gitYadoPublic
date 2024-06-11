@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>宿情報画面</title>
+	<meta charset="UTF-8">
+	<title>宿情報画面</title>
+	<link rel="stylesheet" type="text/css" href="/css/adminStyle.css">
+
 </head>
+
 <body>
-	<h1>宿情報画面</h1>
+
+	<header th:replace="adminHeader"></header>
+
+	<h2>宿情報画面</h2>
+	<a href="/admin/customer/add">宿新規追加</a>
 	
-	<p><a href>宿検索</a></p>
-	<p><a href>宿新規登録</a></p>
-	<p><a href>宿情報更新</a></p>
-	<p><a href>宿削除</a></p>
-	
-	<p><a href="/adminTop">戻る</a></p>
+	<form action="/admin/customer/result" method="get">
+		<input type="text" name="yadoname" th:value="${yadoname}" placeholder="宿名">
+		<input type="text" name="ken" th:value="${ken}" placeholder="所在地(県名)">
+		<button>検索</button>
+	</form>
+
+	<table border="1" align="center">
+		<tr>
+			<th>宿名</th>
+			<th>県名</th>
+			<th>情報更新</th>
+			<th>情報削除</th>
+		</tr>
+		<tr th:each="customer:${customerList}">
+			<td th:text="${customer.hotelName}"></td>
+			<td th:text="${customer.address}"></td>
+			<td>
+				<form th:action="'/admin/customer/'+${customer.id}+'/edit'" method="get">
+					<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="'/admin/customer/'+${customer.id}+'/delete'" method="post">
+					<button>削除</button>
+				</form>
+				
+			</td>
+
+		</tr>
+	</table>
+
+	<footer th:replace="adminFooter"></footer>
+
 
 </body>
+
 </html>
