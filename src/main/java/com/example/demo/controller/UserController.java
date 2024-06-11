@@ -175,7 +175,7 @@ public class UserController {
 		 
 		 inquiryRepository.save(inquiry);
 		 
-		 return "finChangeRepository";
+		 return "finChangeReserve";
 	 }
 	
 	//@GetMapping("/userTop")
