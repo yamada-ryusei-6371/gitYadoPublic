@@ -5,14 +5,12 @@
 <title>予約変更</title>
 </head>
 <body>
-	
-<header th:replace="User_header"></header>
 
 <table border="1" th:each="history:${history}">
 
 <span th:replace="reserve"></span>
 
-<form action="/reserve/change/fin">
+	<!--人数検索-->
 <input type="number"  min="1" max="8">
 
  <input type="date">
@@ -35,7 +33,7 @@
   <option value="23">23:00</option>
 </select>
 
-	<input type="hidden" name="history" th:value="${history}">
+<form action="">
 	<button>更新</button>
 </form>
 

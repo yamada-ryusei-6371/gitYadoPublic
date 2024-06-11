@@ -1,17 +1,17 @@
 <table border="1">
 	<tr>
-		<td rowspan="3"><img th:src="${hitory.image}"> </td>
+		<td rowspan="3">画像</td>
 		<td colspan="5" th:text="history.hotelName"></td>
 	</tr> 
 	<tr>
 		<td>チェックイン</td>
-		<td th:text="${history.hotelDate{"></td>
-		<td th:text="${history.checkIn}"></td>
+		<td th:text="history.hotelDate"></td>
+		<td th:text="history.checkIn"></td>
 		<td>人数</td>
-		<td th:text="${history.human}">人</td>
+		<td th:text="history.human">人</td>
 	</tr>
 	<tr>
-		<td colspan="5" th:text="${history.price}">円</td>
+		<td colspan="5" th:text="history.price">円</td>
 	
 	</tr>
 </table>
